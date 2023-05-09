@@ -1,67 +1,142 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import '../styles/App.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
+import classnames from "classnames";
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
+  }
 
-    function validateForm() {
-        return username.length > 0 && password.length > 8;
+  componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(process.env.BACKEND_HOST + '/login', {
-        username,
-        password,
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
       });
-      // handle successful login
-    } catch (error) {
-      setError(error.response.data.message);
     }
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  return (
-    <div className="form-wrapper">
-    <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="username">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-                autoFocus
-                type="text"
-                value={username}
-                onChange={(e) => handleUsernameChange(e)}
-            />
-        </Form.Group>
-        <Form.Group size="lg" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-                type="password"
-                value={password}
-                onChange={(e) => handlePasswordChange(e)}
-            />
-        </Form.Group>
-        {error && <p className="text-danger">{error}</p>}
-        <Button block size="lg" type="submit" className="mt-4" disabled={!validateForm()}>
-            Login
-        </Button>
+  onSubmit = e => {
+    e.preventDefault();
 
-    </Form>
-    </div>
-  );
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    this.props.loginUser(userData);
+  };
+
+  render() {
+    const { errors } = this.state;
+
+    return (
+      <div className="container">
+        <div style={{ marginTop: "4rem" }} className="row">
+          <div className="col s8 offset-s2">
+            <Link to="/" className="btn-flat waves-effect">
+              <i className="material-icons left">keyboard_backspace</i> Back to
+              home
+            </Link>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <h4>
+                <b>Login</b> below
+              </h4>
+              <p className="grey-text text-darken-1">
+                Don't have an account? <Link to="/register">Register</Link>
+              </p>
+            </div>
+            <form noValidate onSubmit={this.onSubmit}>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  className={classnames("", {
+                    invalid: errors.email || errors.emailnotfound
+                  })}
+                />
+                <label htmlFor="email">Email</label>
+                <span className="red-text">
+                  {errors.email}
+                  {errors.emailnotfound}
+                </span>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  className={classnames("", {
+                    invalid: errors.password || errors.passwordincorrect
+                  })}
+                />
+                <label htmlFor="password">Password</label>
+                <span className="red-text">
+                  {errors.password}
+                  {errors.passwordincorrect}
+                </span>
+              </div>
+              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <button
+                  style={{
+                    width: "150px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

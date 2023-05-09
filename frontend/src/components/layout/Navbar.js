@@ -9,7 +9,7 @@ class Navbar extends Component {
       <div className="navbar-sticky">
         <nav className="z-depth-0">
           <div className="nav-wrapper white">
-            <div className="left black-text mx-5">
+            <div className="left black-text">
             <Link
               to="/"
               style={{
@@ -21,14 +21,17 @@ class Navbar extends Component {
               JanWhere
             </Link>
             </div>
-            <div className="col s7 right black-text  mx-5">
+            <div className="col s7 right black-text">
                 <Link to={'/'} className="btn btn-flat waves-effect white black-text">
+                  Home
+                </Link>
+                <Link to={'/discover'} className="btn btn-flat waves-effect white black-text">
                   Discover
                 </Link>
-                <Link to={'/'} className="btn btn-flat waves-effect white black-text">
+                <Link to={'/about'} className="btn btn-flat waves-effect white black-text">
                   About Us
                 </Link>
-                <Link to={'/'} className="btn btn-flat waves-effect white black-text">
+                <Link to={'/contact'} className="btn btn-flat waves-effect white black-text">
                   Contact Us
                 </Link>
                 <Link
