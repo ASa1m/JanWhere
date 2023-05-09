@@ -1,10 +1,6 @@
 # React MERN Stack App
 
-React MERN Stack CRUD app tutorial - Create frontend and backend with React, Node, Express, mongoDB. and learn to consume REST APIs with React Axios.
-
-This tutorial is not compatible with React Router V6, we used React Router V5 instead.
-
-
+React MERN Stack app
 
 ## Available Scripts
 
