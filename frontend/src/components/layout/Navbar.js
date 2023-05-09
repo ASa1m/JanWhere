@@ -6,7 +6,7 @@ import '../../styles/App.css';
 class Navbar extends Component {
   render() {
     return (
-      <div className="navbar-sticky">
+      <div className="navbar-sticky px-5">
         <nav className="z-depth-0">
           <div className="nav-wrapper white">
             <div className="left black-text">
