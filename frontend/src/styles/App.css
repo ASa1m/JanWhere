@@ -38,6 +38,7 @@ body h3 {
   top: 2px;
 }
 
+
 .edit-link:hover {
   color: #ffffff;
   background-color: #218838;
@@ -52,4 +53,8 @@ input::-webkit-inner-spin-button {
 .App-logo {
   height: 5vmin;
   pointer-events: none;
+}
+
+a :active {
+  background-color: #28a745;
 }
