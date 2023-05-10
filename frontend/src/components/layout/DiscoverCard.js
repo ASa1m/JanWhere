@@ -6,7 +6,7 @@ import '../../styles/App.css';
 
 function RCard(props) {
   return (
-    <Card style={{ border: 'solid 1px', display: 'flex', flexDirection: props.direction === 'right' ? 'row-reverse' : 'row' }}>
+    <Card style={{display: 'flex', flexDirection: props.direction === 'right' ? 'row-reverse' : 'row' }}>
         <div style={{ width: '30%', height: '100%' }}>
         <Card.Img className='img-fluid bg-img' variant="top" src={props.image === '' ? PlaceHoder : props.image} alt="Animal Placeholder" width ={'100%'} height={'auto'} />
         </div>
@@ -17,7 +17,7 @@ function RCard(props) {
         <Card.Text className="truncate" style={{ margin: '1rem 0' }}>
             {props.description}
         </Card.Text>
-        <Button variant="primary">Details</Button>
+        <Button variant="primary" style={{backgroundColor: '#FFC947', color: '#46237A'}}>Learn More</Button>
       </Card.Body>
         </div>
     </Card>
