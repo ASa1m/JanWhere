@@ -14,6 +14,8 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from 'react-redux'
 import Map from './containers/Map'
 import Dis from './containers/Discover'
+import AboutUs from './containers/About'
+import ContactUs from './containers/Contact'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import store from './store'
@@ -61,6 +63,17 @@ function App() {
                       path="/discover"
                       element={<Dis/>}
                     />
+                    <Route
+                      exact
+                      path="/contact"
+                      element={<ContactUs/>}
+                    />
+                    <Route
+                      exact
+                      path="/about"
+                      element={<AboutUs/>}
+                    />
+
                     <Route
                       exact
                       path="/login"
