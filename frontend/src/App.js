@@ -48,16 +48,18 @@ function App() {
       <Provider store={store}>
         <Router>
           <Navbar/>
+          <Routes>
+          <Route
+                      exact
+                      path="/"
+                      element={<Map />}
+                    />
+          </Routes>
           <Container>
             <Row>
               <Col md={12}>
                 <div className="wrapper">
                   <Routes>
-                    <Route
-                      exact
-                      path="/"
-                      element={<Map />}
-                    />
                     <Route
                       exact
                       path="/discover"
