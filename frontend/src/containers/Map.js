@@ -17,8 +17,10 @@ const Map = () => {
         <GoogleMap
           mapContainerClassName="map-container"
           center={center}
-          zoom={10}
-        />
+          zoom={15}
+        >
+          <Marker position={center} />
+        </GoogleMap>
       )}
     </div>
   );
