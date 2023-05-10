@@ -14,7 +14,7 @@ export const registerUser = userData => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response.data === undefined ? null : err.response.data
       });
     });
 };
@@ -39,7 +39,7 @@ export const loginUser = userData => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response === undefined ? null : err.response.data
       })
     );
 };

@@ -71,3 +71,12 @@ input::-webkit-inner-spin-button {
 a {
   background-color: #000500;
 }
+
+a:hover {
+  color: #000500;
+}
+
+input {
+  background-color: #000500;
+  color: white;
+}

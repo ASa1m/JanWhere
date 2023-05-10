@@ -13,6 +13,7 @@ function Navbar() {
 
     useEffect(() => {
         store.subscribe(() => {
+            if (this === undefined) return;
             this.setState({
                 isAuthenticated: store.getState().auth.isAuthenticated
             });
