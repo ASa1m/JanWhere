@@ -12,7 +12,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import { Provider } from 'react-redux'
-import Map from './components/map.component'
+import Map from './containers/Map'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import store from './store'

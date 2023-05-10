@@ -1,0 +1,13 @@
+{
+    "name": "janwhere",
+    "version": "1.0.0",
+    "description": "Web Project",
+    "scripts": {
+      "client-install": "npm install --prefix client",
+      "start": "node server.js",
+      "server": "npm start --prefix backend",
+      "client": "npm start --prefix frontend",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "author": ""
+}

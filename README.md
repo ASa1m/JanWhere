@@ -1,41 +1,31 @@
-# React MERN Stack App
+# JanWhere Web App
 
-React MERN Stack app
+JanWhere Web App in MERN
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### Start Frontend Server
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Get inside the `frontend` folder
+- Run `npm install` to install required packages 
+- Open terminal run `npm start`
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Open React App URL on [http://localhost:3000/](http://localhost:3000/) to view it in the browser.
+
 
 ### Start Backend Server
 
 - Get inside the `backend` folder
 - Run `npm install` to install required packages 
-- Open terminal run `nodemon server.js`
-- Open other terminal run `mongod`
+- Open terminal run `npm start`
 
-Open API URL on [http://localhost:4000/students](http://localhost:4000/students) to view it in the browser.
+Open API URL on [http://localhost:5000/](http://localhost:5000/) to view it in the browser.
 
+### `npm run dev`
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+Launch both server and client simultaneously
+- First install concurrently globally in Node.js using 'npm install concurrently -g'
+- Set node options to use openssl-legacy mode using '$env:NODE_OPTIONS="--openssl-legacy-provider'
+- Now run the command 'npm run dev'

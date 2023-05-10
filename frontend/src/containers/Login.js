@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -21,10 +21,12 @@ const Login = ({ loginUser, auth, errors }) => {
     loginUser(userData);
   };
 
-  // If logged in and user navigates to Login page, should redirect them to dashboard
-  if (auth.isAuthenticated) {
-    navigate("/dashboard");
-  }
+  useEffect(() => {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (auth.isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [auth, navigate]);
 
   return (
     <div className="container">

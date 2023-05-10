@@ -22,22 +22,22 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated } = this.state;
     return (
-      <div className="navbar-sticky">
-        <nav className="z-depth-0">
-          <div className="nav-wrapper white">
+      <div className="nav">
+        <nav className="z-depth-0 white">
+          <div className="nav-wrap white">
             <div className="left black-text">
               <Link
                 to="/"
                 style={{
                   fontFamily: "monospace"
                 }}
-                className="col s5 brand-logo left black-text"
+                className="brand-logo left black-text"
               >
                 <i className="material-icons">code</i>
                 JanWhere
               </Link>
             </div>
-            <div className="col s7 right black-text">
+            <div className="right black-text">
               <Link to={'/'} className="btn btn-flat waves-effect white black-text">
                 Home
               </Link>
