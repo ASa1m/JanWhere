@@ -20,7 +20,7 @@ class Register extends Component {
   componentDidMount() {
     // If logged in and user navigates to Signup page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.navigate("/dashboard");
     }
   }
 
@@ -46,7 +46,7 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    this.props.registerUser(newUser, this.props.history);
+    this.props.registerUser(newUser, this.props.navigate);
   };
 
   render() {
@@ -160,12 +160,12 @@ const mapStateToProps = state => ({
 
 const withRouter = (Component) => {
     return (props) => {
-        const navigate = useNavigate();
-        return <Component {...props} navigate={navigate} />;
+      const navigate = useNavigate();
+      return <Component {...props} navigate={navigate} />;
     };
-};
-
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+  };
+  
+  export default connect(
+    mapStateToProps,
+    { registerUser }
+  )(withRouter(Register));
