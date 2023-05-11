@@ -6,7 +6,7 @@ function DCard(props) {
     <div class="card">
       <div class="avatar white d-flex justify-content-center align-items-center">
         <img
-          src= {"/static/" + props.image + (props.image === undefined ? '.png' : '')} alt='Avatar'
+          src= {props.image + (props.image === "/static/undefined" ? '.png' : '')} alt='Avatar'
           class="img-fluid"
         />
       </div>

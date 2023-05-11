@@ -25,7 +25,7 @@ export default class Dicover extends Component {
 
   fetchData() {
     return this.state.developers.map((res, i) => {
-      return <Card name={res.name} role={res.role} image={res.image}/>
+      return <Card name={res.name} role={res.role} image={"/static/"+res.image}/>
     });
   }
 
