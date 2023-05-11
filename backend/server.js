@@ -40,4 +40,4 @@ app.use("/api/animals", animals);
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+app.listen(port, () => console.log(`Server up and running at http://localhost:${port}/\nusers: http://localhost:${port}/api/users\nanimals: http://localhost:${port}/api/animals`));
