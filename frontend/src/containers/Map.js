@@ -17,7 +17,9 @@ const Map = () => {
           mapContainerClassName="map-container"
           center={center}
           zoom={15}
-          mapTypeId="satellite"
+          // mapTypeId="hybrid"
+          mapId="93eba23fb9a0dcc5"
+          options={{mapId: '93eba23fb9a0dcc5'}}
         >
           <Marker position={center} />
         </GoogleMap>
