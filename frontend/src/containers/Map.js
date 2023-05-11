@@ -11,15 +11,13 @@ const Map = () => {
   return (
     <div className="map-main">
       {!isLoaded ? (
-        <h1>Loading...</h1>
+        <h1 className="center">Welcome to JanWhere</h1>
       ) : (
         <GoogleMap
           mapContainerClassName="map-container"
           center={center}
           zoom={15}
-          // mapTypeId="hybrid"
-          mapId="93eba23fb9a0dcc5"
-          options={{mapId: '93eba23fb9a0dcc5'}}
+          options={{mapId: process.env.REACT_APP_GOOGLE_API_KEY}}
         >
           <Marker position={center} />
         </GoogleMap>

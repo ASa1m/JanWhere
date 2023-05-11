@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React from 'react';
 import PlaceHoder from '../../placeholder-image.png';
-import '../../styles/App.css';
 
 function RCard(props) {
   return (

@@ -31,7 +31,7 @@ export default class Dicover extends Component {
 
   render() {
     return (<div className="content" style={{ fontFamily: "monospace" }}>
-      <h3>Discover the world of animals</h3>
+      <h3 className="center">Discover the world of animals</h3>
        <div>
         {this.fetchData()}
         </div>

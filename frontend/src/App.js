@@ -47,13 +47,18 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <Navbar/>
+          <Navbar />
           <Routes>
-          <Route
-                      exact
-                      path="/"
-                      element={<Map />}
-                    />
+            <Route
+              exact
+              path="/"
+              element={<Map />}
+            />
+            <Route
+              exact
+              path="/about"
+              element={<AboutUs />}
+            />
           </Routes>
           <Container>
             <Row>
@@ -63,17 +68,12 @@ function App() {
                     <Route
                       exact
                       path="/discover"
-                      element={<Dis/>}
+                      element={<Dis />}
                     />
                     <Route
                       exact
                       path="/contact"
-                      element={<ContactUs/>}
-                    />
-                    <Route
-                      exact
-                      path="/about"
-                      element={<AboutUs/>}
+                      element={<ContactUs />}
                     />
 
                     <Route
