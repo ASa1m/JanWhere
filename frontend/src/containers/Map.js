@@ -17,7 +17,7 @@ const Map = () => {
           mapContainerClassName="map-container"
           center={center}
           zoom={15}
-          options={{mapId: process.env.REACT_APP_GOOGLE_API_KEY}}
+          options={{mapId: process.env.REACT_APP_GOOGLE_MAP_ID}}
         >
           <Marker position={center} />
         </GoogleMap>
