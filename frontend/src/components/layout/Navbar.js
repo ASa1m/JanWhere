@@ -22,9 +22,9 @@ function Navbar() {
     );
 
     return (
-        <div className="nav">
-            <nav className="z-depth-0" style={{ backgroundColor: '#000500' }}>
-                <div className="nav-wrap">
+        <div class="m-4">
+    <nav class="navbar navbar-expand-lg black">
+        <div class="container-fluid">
                     <div className="left white-text">
                         <Link
                             to="/"
@@ -37,6 +37,10 @@ function Navbar() {
                             JanWhere
                         </Link>
                     </div>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div className="right white-text">
                         <Link to={'/'} className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/' ?  activeStyle.color : 'white-text')}>
                             Home
@@ -88,10 +92,12 @@ function Navbar() {
                                 </Link>
                             </>
                         )}
-                    </div>
-                </div>
-            </nav>
+                    </div>  
+            </div>
         </div>
+    </nav>
+</div>
+
     );
 }
 
