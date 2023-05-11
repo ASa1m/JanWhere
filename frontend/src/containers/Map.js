@@ -4,7 +4,8 @@ import "../styles/App.css";
 
 const Map = () => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    id : "93eba23fb9a0dcc5"
   });
   const center = useMemo(() => ({ lat: 33.64491333779565, lng: 72.99209107579742 }), []);
 
@@ -17,7 +18,8 @@ const Map = () => {
           mapContainerClassName="map-container"
           center={center}
           zoom={15}
-          mapTypeId="satellite"
+          mapTypeId="hybrid"
+        
         >
           <Marker position={center} />
         </GoogleMap>
