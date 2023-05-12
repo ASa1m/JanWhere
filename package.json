@@ -11,5 +11,6 @@
     },
     "author": "",
     "dependencies": {
+        "@react-google-maps/marker-clusterer": "^2.16.1"
     }
 }

@@ -52,8 +52,11 @@ const Map = () => {
           zoom={15}
           options={{ mapId: process.env.REACT_APP_GOOGLE_MAP_ID , disableDefaultUI: true, zoomControl: true, styles: [{ "featureType": "poi", "stylers": [{ "visibility": "off" }] }] }}
         >
+           <MarkerClusterer>
+        {(clusterer) => (
+          <div>
               {animals.map(animal => (
-                <Marker key={animal._id} position={{ lat: animal.location.latitude, lng: animal.location.longitude }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut}>
+                <Marker key={animal._id} position={{ lat: animal.location.latitude, lng: animal.location.longitude }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
                   {activeAnimal === animal && (
                     <InfoBox position={{ lat: animal.location.latitude, lng: animal.location.longitude }} options={{ pixelOffset: new window.google.maps.Size(-80, 0), closeBoxURL: '', enableEventPropagation: true, boxStyle: { width: "160px", height: "100px", overflow: "visible" } }}>
                       <div class="card">
@@ -68,6 +71,9 @@ const Map = () => {
                 </Marker>
               ))
             }
+          </div>
+        )}
+            </MarkerClusterer>
         </GoogleMap>
       )}
     </div>

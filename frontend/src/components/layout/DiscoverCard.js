@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PlaceHoder from '../../placeholder-image.png';
 import { useNavigate } from 'react-router-dom';
 
