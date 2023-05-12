@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import '../../styles/App.css';
 import store from "../../store";
 
 const activeStyle = { color: "blue-text" };
 
-function Navbar() {
+function Navibar() {
 
     const isAuthenticated = store.getState().auth.isAuthenticated;
 
@@ -22,37 +23,39 @@ function Navbar() {
     );
 
     return (
-        <div className="nav">
-            <nav className="z-depth-0" style={{ backgroundColor: '#000500' }}>
-                <div className="nav-wrap">
-                    <div className="left white-text">
-                        <Link
-                            to="/"
-                            style={{
-                                fontFamily: "monospace"
-                            }}
-                            className="brand-logo left white-text"
-                        >
-                            <i className="material-icons">map</i>
-                            JanWhere
-                        </Link>
-                    </div>
-                    <div className="right white-text">
-                        <Link to={'/'} className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/' ?  activeStyle.color : 'white-text')}>
+        <div>
+            <Navbar className="z-depth-0" expand="lg">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+                <Container className="white-text">
+                    <Navbar.Brand
+                        to="/"
+                        style={{
+                            fontFamily: "monospace"
+                        }}
+                        className="brand-logo white-text"
+                    >
+                        <i className="material-icons">map</i>
+                        JanWhere
+                    </Navbar.Brand>
+                    <Navbar.Toggle className="blue" aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse className="white-text justify-content-end" id="basic-navbar-nav">
+                        <Nav className="me-auto">
+                        <Nav.Link href="/"  className={"btn btn-flat waves-effect hoverable " + (location.pathname === '/' ? activeStyle.color : 'white-text')}>
                             Home
-                        </Link>
-                        <Link to={'/discover'} className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/discover' ? activeStyle.color : 'white-text')}>
+                        </Nav.Link>
+                        <Nav.Link href={'/discover'} className={"btn btn-flat waves-effect hoverable " + (location.pathname === '/discover' ? activeStyle.color : 'white-text')}>
                             Discover
-                        </Link>
-                        <Link to={'/about'} className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/about' ? activeStyle.color : 'white-text')}>
+                        </Nav.Link>
+                        <Nav.Link href={'/about'} className={"btn btn-flat waves-effect hoverable " + (location.pathname === '/about' ? activeStyle.color : 'white-text')}>
                             About Us
-                        </Link>
-                        <Link to={'/contact'} className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/contact' ? activeStyle.color : 'white-text')}>
+                        </Nav.Link>
+                        <Nav.Link href={'/contact'} className={"btn btn-flat waves-effect hoverable " + (location.pathname === '/contact' ? activeStyle.color : 'white-text')}>
                             Contact Us
-                        </Link>
+                        </Nav.Link>
                         {isAuthenticated ? (
-                            <Link
-                                to="/dashboard"
+                            <Nav.Link
+                                href="/dashboard"
                                 style={{
                                     width: "120px",
                                     borderRadius: "3px",
@@ -61,38 +64,30 @@ function Navbar() {
                                 className="btn waves-effect waves-light hoverable blue accent-3"
                             >
                                 Dashboard
-                            </Link>
+                            </Nav.Link>
                         ) : (
                             <>
-                                <Link
-                                    to="/login"
-                                    style={{
-                                        width: "100px",
-                                        borderRadius: "3px",
-                                        letterSpacing: "1.5px"
-                                    }}
-                                    className={"btn btn-flat waves-effect hoverable "+(location.pathname === '/login' ? activeStyle.color : 'white-text')}
+                                <Nav.Link
+                                    href="/login"
+                                    className={"btn btn-flat waves-effect hoverable " + (location.pathname === '/login' ? activeStyle.color : 'white-text')}
                                 >
                                     Log In
-                                </Link>
-                                <Link
-                                    to="/signup"
-                                    style={{
-                                        width: "120px",
-                                        borderRadius: "3px",
-                                        letterSpacing: "1.5px"
-                                    }}
-                                    className="btn waves-effect waves-light hoverable blue accent-3"
+                                </Nav.Link>
+                                <Nav.Link
+                                    href="/signup"
+                                 
+                                    className="btn waves-effect waves-light hoverable blue accent-3 white-text"
                                 >
                                     Sign Up
-                                </Link>
+                                </Nav.Link>
                             </>
                         )}
-                    </div>
-                </div>
-            </nav>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </div>
     );
 }
 
-export default Navbar;
+export default Navibar;

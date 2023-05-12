@@ -31,7 +31,7 @@ const Login = ({ loginUser, auth, errors }) => {
   return (
     <div className="container">
       <div style={{ marginTop: "4rem" }} className="row">
-        <div className="col s8 offset-s2">
+        <div className="col-lg-5">
           <Link to="/" className="btn-flat waves-effect white-text text-darken-1">
             <i className="material-icons left">keyboard_backspace</i> Back to
             home
