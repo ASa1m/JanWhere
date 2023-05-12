@@ -41,7 +41,7 @@ const Map = () => {
   return (
     <div className="map-main">
       {!isLoaded ? (
-        <h1 className="center">Welcome to JanWhere</h1>
+        <h1 className="center text-white">Welcome to JanWhere</h1>
       ) : (
         <GoogleMap
           mapContainerClassName="map-container"

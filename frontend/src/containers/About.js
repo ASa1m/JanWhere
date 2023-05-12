@@ -34,7 +34,7 @@ export default class Dicover extends Component {
       <div class="container py-5 my-5">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
         <section class="p-md-3 mx-md-5 text-center text-lg-left">
-          <h2 class="text-center mx-auto font-weight-bold mb-5 pb-2">Our Team</h2>
+          <h2 class="text-center mx-auto font-weight-bold mb-5 pb-2 text-white">Our Team</h2>
           <div class="row">
             {this.fetchData()}
           </div>
