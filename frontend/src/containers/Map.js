@@ -4,6 +4,8 @@ import axios from "axios";
 import Icon from "../../src/map-marker.png";
 import { useNavigate } from "react-router-dom";
 
+import MapCard from "../components/layout/MapCard.js";
+
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
   const navigate = useNavigate();
@@ -42,7 +44,8 @@ const Map = () => {
   const center = useMemo(() => ({ lat: 33.64491333779565, lng: 72.99209107579742 }), []);
 
   return (
-    <div className="map-main">
+    <div>
+    <div className="map-main z-index-0">
       {!isLoaded ? (
         <h1 className="center text-white">Welcome to JanWhere</h1>
       ) : (
@@ -76,6 +79,12 @@ const Map = () => {
             </MarkerClusterer>
         </GoogleMap>
       )}
+    </div>
+      <div className="map-card-list overflow-auto">
+      {animals.map(animal => (
+        <MapCard key={animal._id} id={animal._id} name={animal.name} image={animal.image} />
+      ))}
+    </div>
     </div>
   );
 };
