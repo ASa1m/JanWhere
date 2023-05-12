@@ -37,17 +37,18 @@ export default function DiscoverCard(props) {
     setExpanded(!expanded);
   };
 
+
 const handleClick = () => { 
-  navigate('/post/'+props.id);
+  navigate('/post/'+props.obj._id);
 }
 
 
   return (
-    <Card className='m-2' sx={{ maxWidth: 345 }}>
+    <Card className='m-2 grey' sx={{ Width: 345 }} onClick={handleClick}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {props.username?props.username[0]:"U"}
+          <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">
+            {props.obj.username?props.obj.username[0]:"U"}
           </Avatar>
         }
         action={
@@ -55,18 +56,18 @@ const handleClick = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.username ? props.username : "Unknown"}           //props.Username
-        subheader={props.date ? props.date : "1-Jan-2023"   } //props.Date
+        title={props.obj.username ? props.obj.username : "Unknown"}           //props.obj.Username
+        subheader={props.obj.date ? props.obj.date : "1-Jan-2023"   } //props.obj.Date
       />
       <CardMedia
         component="img"
         height="194"
-        image={props.image ? props.image : PlaceHoder }  //props.Image
-        alt={props.title ? props.title+" image" : "Image not found"  } //props.Title
+        image={props.obj.image ? props.obj.image : PlaceHoder }  //props.obj.Image
+        alt={props.obj.title ? props.obj.title+" image" : "Image not found"  } //props.obj.Title
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {props.cover ? props.cover : "No cover"  }   
+          {props.obj.cover ? props.obj.cover : "No cover"  }   
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -88,7 +89,7 @@ const handleClick = () => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {props.Content ? props.Content : "No content" } // props.Content
+            {props.obj.Content ? props.obj.Content : "No content" }
           </Typography>
         </CardContent>
       </Collapse>

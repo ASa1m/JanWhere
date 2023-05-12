@@ -23,9 +23,10 @@ export default class Dicover extends Component {
             })
     }
 
+
     fetchData() {
         return this.state.animals.map((res, i) => {
-            return <Card obj={res} key={i} />; 
+            return <Card obj={res} key={i} />;
         });
     }
 
