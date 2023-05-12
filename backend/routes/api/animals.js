@@ -24,5 +24,13 @@ router.post("/list", (req, res) => {
 }
 );
 
+router.get("/:id", (req, res) => {
+
+    Animal.findById(req.params.id)
+        .then(animal => res.json(animal))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+
 module.exports = router;
 

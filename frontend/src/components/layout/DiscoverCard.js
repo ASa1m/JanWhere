@@ -1,9 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PlaceHoder from '../../placeholder-image.png';
+import { useNavigate } from 'react-router-dom';
 
 function RCard(props) {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+      console.log(props.id);
+      navigate('/post/' + props.id);
+  }
+
   return (
     <Card className={"card flex-sm-column flex-lg-"+ ((props.direction === 'right') ? 'row' : 'row-reverse')} >
         <div className={"col-lg-4 col-md-12  h-100"}>
@@ -16,7 +25,7 @@ function RCard(props) {
         <Card.Text className="text-truncate" style={{ margin: '1rem 0' }}>
             {props.description}
         </Card.Text>
-        <Button variant="primary" style={{backgroundColor: '#FFC947', color: '#46237A'}}>Learn More</Button>
+        <Button variant="primary" style={{backgroundColor: '#FFC947', color: '#46237A'}} onClick={handleClick}>Learn More</Button>
       </Card.Body>
         </div>
     </Card>

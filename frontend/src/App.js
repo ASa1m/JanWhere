@@ -21,6 +21,7 @@ import Signup from './containers/Signup'
 import store from './store'
 import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
+import Post from './containers/Post'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -74,6 +75,11 @@ function App() {
                       exact
                       path="/contact"
                       element={<ContactUs />}
+                    />
+                      <Route
+                      exact
+                      path="/post/:id"
+                      element={<Post />}
                     />
 
                     <Route

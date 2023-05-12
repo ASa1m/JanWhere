@@ -2,12 +2,15 @@ import { GoogleMap, Marker, useLoadScript, InfoBox, MarkerClusterer } from "@rea
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Icon from "../../src/map-marker.png";
+import { useNavigate } from "react-router-dom";
 
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
+  const navigate = useNavigate();
 
   const handleMarkerClick = (marker) => {
     setActiveAnimal(marker);
+    navigate(`/post/${marker._id}`);
   };
 
   const handleMarkerMouseOver = (marker) => {
