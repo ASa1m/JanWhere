@@ -3,9 +3,13 @@
   padding-top: 30px;
 }
 
+.navbar-toggler {
+  border-color: #000500;
+  height: 50px;
+}
+
 .nav-wrap {
-  padding: 10px 30px;
-  padding-bottom: 80px;
+  height: 7rem;
 }
 
 nav {
@@ -98,10 +102,6 @@ input::-webkit-inner-spin-button {
 a {
   background-color: #000500;
   text-decoration: none;
-}
-
-a:hover {
-  color: #000500;
 }
 
 input {

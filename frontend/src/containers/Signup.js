@@ -43,10 +43,10 @@ const Signup = ({ auth, errors, registerUser }) => {
     <div className="container">
       <div className="row">
         <div className="col-lg-5">
-          <Link to="/" className="btn-flat waves-effect white-text">
+          <Link to="/" className="btn white-text">
             <i className="material-icons left">keyboard_backspace</i> Back to home
           </Link>
-          <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+          <div className="col s12 text-white" style={{ paddingLeft: "11.250px" }}>
             <h4>
               <b>Signup</b> here
             </h4>

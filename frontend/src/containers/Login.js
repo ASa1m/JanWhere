@@ -32,16 +32,16 @@ const Login = ({ loginUser, auth, errors }) => {
     <div className="container">
       <div style={{ marginTop: "4rem" }} className="row">
         <div className="col-lg-5">
-          <Link to="/" className="btn-flat waves-effect white-text text-darken-1">
+          <Link to="/" className="btn btn-flat white-text text-darken-1">
             <i className="material-icons left">keyboard_backspace</i> Back to
             home
           </Link>
-          <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+          <div className="col s12 text-white" style={{ paddingLeft: "11.250px" }}>
             <h4>
               <b>Login</b> below
             </h4>
             <p className="white-text text-darken-1">
-              Don't have an account? <Link to="/register">Register</Link>
+              Don't have an account? <Link to="/signup">Register</Link>
             </p>
           </div>
           <form noValidate onSubmit={onSubmit}>

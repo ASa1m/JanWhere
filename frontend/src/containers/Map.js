@@ -47,7 +47,7 @@ const Map = () => {
           mapContainerClassName="map-container"
           center={center}
           zoom={15}
-          options={{ mapId: process.env.REACT_APP_GOOGLE_MAP_ID }}
+          options={{ mapId: process.env.REACT_APP_GOOGLE_MAP_ID , disableDefaultUI: true, zoomControl: true, styles: [{ "featureType": "poi", "stylers": [{ "visibility": "off" }] }] }}
         >
               {animals.map(animal => (
                 <Marker key={animal._id} position={{ lat: animal.location.latitude, lng: animal.location.longitude }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut}>
