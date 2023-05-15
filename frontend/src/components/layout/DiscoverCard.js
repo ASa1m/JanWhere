@@ -43,7 +43,7 @@ const handleClick = () => {
 
 
   return (
-    <Card className='m-2 grey' sx={{ Width: 345 }} onClick={handleClick}>
+    <Card className='m-2 grey' sx={{ Width: 345 }} style={{ width: '350px' }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">
@@ -58,13 +58,13 @@ const handleClick = () => {
         title={props.obj.username ? props.obj.username : "Unknown"}           //props.obj.Username
         subheader={props.obj.date ? props.obj.date : "1-Jan-2023"   } //props.obj.Date
       />
-      <CardMedia
+      <CardMedia  onClick={handleClick}
         component="img"
         height="194"
         image={props.obj.image ? props.obj.image : PlaceHoder }  //props.obj.Image
         alt={props.obj.title ? props.obj.title+" image" : "Image not found"  } //props.obj.Title
       />
-      <CardContent>
+      <CardContent  onClick={handleClick}>
         <Typography variant="body2" color="text.secondary">
           {props.obj.cover ? props.obj.cover : "No cover"  }   
         </Typography>

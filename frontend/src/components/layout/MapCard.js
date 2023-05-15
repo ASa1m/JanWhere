@@ -8,8 +8,7 @@ function MapCard(props) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        console.log(props.id);
-        navigate('/post/' + props.id);
+        navigate('/discover/' + props.name.toLowerCase());
     }
 
     return (

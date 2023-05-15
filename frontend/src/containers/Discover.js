@@ -1,43 +1,50 @@
-import React, { Component } from "react";
-import Card from "../components/layout/DiscoverCard"
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
+import Card from "../components/layout/DiscoverCard";
+import FilterBar from "../components/layout/FilterBar";
 import axios from 'axios';
 
-export default class Dicover extends Component {
+function Discover() {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            animals: []
-        };
-    }
+    const [animals, setAnimals] = useState([]);
+    const [animalsToShow, setAnimalsToShow] = useState([]);
+    const [name] = useState(useParams().name);
 
-    componentDidMount() {
+    useEffect(() => {
         axios.get('/api/animals/list')
-            .then(res => {
-                this.setState({
-                    animals: res.data
-                });
+            .then(response => {
+                setAnimals(response.data);
+                if (name === undefined) {
+                    setAnimalsToShow(response.data);
+                }
+                else {
+                    setAnimalsToShow(response.data.filter(animal => animal.name.toLowerCase().includes(name.toLowerCase())));
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+            .catch(error => {
+                console.error(error);
+            });
+    }, []);
 
-
-    fetchData() {
-        return this.state.animals.map((res, i) => {
-            return <Card obj={res} key={i} />;
+    const fetchData = () => {
+        if (animalsToShow.length === 0) {
+            return <div className="center text-white">No animals found</div>;
+        }
+        return animalsToShow.map((animal, index) => {
+            return <Card obj={animal} key={index} />;
         });
-    }
+    };
 
-  render() {
-    return (<div className="content" style={{ fontFamily: "monospace" }}>
-      <h3 className="center text-white">Discover the world of animals</h3>
-       <div className="d-flex flex-wrap justify-content-center">
-        {this.fetchData()}
-        </div>
-    </div>);
-  }
+    return (
+        <div className="content" style={{ fontFamily: "monospace" }}>
+            <h3 className="center text-white">Discover the world of animals</h3>
+            <div className="center text-white">
+                <FilterBar obj={animals} />
+            </div>
+            <div className="d-flex flex-wrap justify-content-center">
+                {fetchData()}
+            </div>
+        </div>);
 }
 
-
+export default Discover;

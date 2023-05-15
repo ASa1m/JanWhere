@@ -13,7 +13,7 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import { Provider } from 'react-redux'
 import Map from './containers/Map'
-import Dis from './containers/Discover'
+import Discover from './containers/Discover'
 import AboutUs from './containers/About'
 import ContactUs from './containers/Contact'
 import Login from './containers/Login'
@@ -69,7 +69,12 @@ function App() {
                     <Route
                       exact
                       path="/discover"
-                      element={<Dis />}
+                      element={<Discover />}
+                    />
+                    <Route
+                      exact
+                      path="/discover/:name"
+                      element={<Discover />}
                     />
                     <Route
                       exact

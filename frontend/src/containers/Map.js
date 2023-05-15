@@ -3,13 +3,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Icon from "../../src/map-marker.png";
 import { useNavigate } from "react-router-dom";
-
 import MapCard from "../components/layout/MapCard.js";
-import { Input } from "@mui/base";
 
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
   const [animalsToShow, setAnimalsToShow] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
 
   const handleMarkerClick = (marker) => {
@@ -26,13 +25,19 @@ const Map = () => {
   };
 
   const handleSearch = (event) => {
-    console.log(event.target.value);
+    setInputValue(event.target.value);
     if (event.target.value === "") {
       setAnimalsToShow(animals);
       return;
     }
     setAnimalsToShow(animals.filter(animal => animal.name.toLowerCase().includes(event.target.value.toLowerCase())));
   };
+
+  const handleClose = () => {
+    setInputValue("");
+    setAnimalsToShow(animals);
+  };
+
 
   const [animals, setAnimals] = useState([]);
 
@@ -97,9 +102,10 @@ const Map = () => {
       <nav>
     <div class="nav-wrapper">
         <div class="input-field">
-          <input id="search" type="search" onChange={handleSearch} />
+          <input id="search" type="search" value={inputValue} onChange={handleSearch} />
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
+          <i class="material-icons" onClick={handleClose}
+          >close</i>
         </div>
     </div>
   </nav>
