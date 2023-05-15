@@ -20,7 +20,7 @@ function SplitVariantExample(props) {
                 labels.push(animal[value]);
                 console.log(name);
                 console.log(animal[value]);
-                return <Dropdown.Item key={index}  active={name.toUpperCase()==animal[value]} eventKey={animal[value]} onSelect={handleSelect}>{animal[value]}</Dropdown.Item>;
+                return <Dropdown.Item key={index}  active={name==animal[value]} eventKey={animal[value]} onSelect={handleSelect}>{animal[value]}</Dropdown.Item>;
             }
         });
     };
