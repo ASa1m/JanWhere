@@ -6,10 +6,20 @@ FROM node:18
 WORKDIR /app
 
 # Copy the application files into the working directory
-COPY /frontend /app
+COPY . /app
+
+WORKDIR /app/frontend
 
 # Install the application dependencies
 RUN npm install
 
+WORKDIR /app/backend
+
+RUN npm install
+
+WORKDIR /app
+
+RUN npm install
+
 # Define the entry point for the container
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
