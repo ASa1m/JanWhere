@@ -3,10 +3,10 @@ bashCopy code
 FROM node:18
 
 # Set the working directory in the container
-WORKDIR /frontend
+WORKDIR /app
 
 # Copy the application files into the working directory
-COPY frontend/ ./app
+COPY /frontend /app
 
 # Install the application dependencies
 RUN npm install
