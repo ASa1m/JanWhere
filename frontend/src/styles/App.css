@@ -61,6 +61,26 @@ body {
   width: 100%;
 }
 
+svg {
+  fill: blue;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+svg:hover {
+  fill: red;
+  cursor: pointer;
+  transition: fill 0.2s;
+}
+
+.sticky-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+
 .edit-link {
   text-decoration: none;
   padding: 6.5px 10px;
@@ -96,10 +116,21 @@ body {
     width: 30%;
     height: 95%;
     opacity: 0.2;
+    transition: opacity 0.5s;
     border-radius: 5px;
 }
 
+@media (max-width: 768px) {
+  .map-card-list {
+    width: 100%;
+    position: relative;
+    opacity: 1;
+    height: 50%;
+  }
+}
+
 .map-card-list:hover {
+    transition: opacity 0.5s;
     opacity: 1;
 }
 

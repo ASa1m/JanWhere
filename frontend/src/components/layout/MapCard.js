@@ -12,7 +12,7 @@ function MapCard(props) {
     }
 
     return (
-        <Card className={"card flex-sm-column flex-lg-row m-3"} onClick={handleClick}>
+        <Card className={"card flex-row flex-sm-row flex-md-column flex-lg-row m-3"} onClick={handleClick}>
             <div className={"col-lg-4 col-md-12  h-100"}>
                 <Card.Img className='img-fluid bg-img' variant="top" src={props.image === '' ? PlaceHoder : props.image} alt="Animal Placeholder" width={'100%'} height={'auto'} />
             </div>

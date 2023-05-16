@@ -22,6 +22,7 @@ import store from './store'
 import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
+import StickyButton from './components/layout/StickyButton'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -111,6 +112,7 @@ function App() {
               </Col>
             </Row>
           </Container>
+          <StickyButton />
         </Router>
       </Provider>
     </div>
