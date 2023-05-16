@@ -55,7 +55,7 @@ const handleClick = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.obj.username ? props.obj.username : "Unknown"}           //props.obj.Username
+        title={props.obj.name ? props.obj.name : "Unknown"}           //props.obj.Username
         subheader={props.obj.date ? props.obj.date : "1-Jan-2023"   } //props.obj.Date
       />
       <CardMedia  onClick={handleClick}
@@ -66,7 +66,7 @@ const handleClick = () => {
       />
       <CardContent  onClick={handleClick}>
         <Typography variant="body2" color="text.secondary">
-          {props.obj.cover ? props.obj.cover : "No cover"  }   
+          {props.obj.description ? props.obj.description : "No cover"  }   
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
