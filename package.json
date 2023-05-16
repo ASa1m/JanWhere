@@ -11,6 +11,7 @@
     },
     "author": "",
     "dependencies": {
-        "@react-google-maps/marker-clusterer": "^2.16.1"
+        "@react-google-maps/marker-clusterer": "^2.16.1",
+        "react-swipeable-views": "^0.14.0"
     }
 }

@@ -22,6 +22,7 @@ import store from './store'
 import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
+import Test from "./components/layout/Test"
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -75,6 +76,11 @@ function App() {
                       exact
                       path="/discover/:name"
                       element={<Discover />}
+                    />
+                     <Route
+                      exact
+                      path="/test"
+                      element={<Test />}
                     />
                     <Route
                       exact

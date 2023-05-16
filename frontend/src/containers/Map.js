@@ -4,6 +4,9 @@ import axios from "axios";
 import Icon from "../../src/map-marker.png";
 import { useNavigate } from "react-router-dom";
 import MapCard from "../components/layout/MapCard.js";
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+import AnimalCard from "../components/layout/AnimalCard";
 
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
@@ -80,13 +83,16 @@ const Map = () => {
                     <Marker key={animal._id} position={{ lat: animal.location.latitude, lng: animal.location.longitude }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
                       {activeAnimal === animal && (
                         <InfoBox position={{ lat: animal.location.latitude, lng: animal.location.longitude }} options={{ pixelOffset: new window.google.maps.Size(-80, 0), closeBoxURL: '', enableEventPropagation: true, boxStyle: { width: "160px", height: "100px", overflow: "visible" } }}>
-                          <div class="card">
+                          { 
+
+                          /* <div class="card">
                             <img src={animal.image} alt="Avatar" style={{ width: "100%" }} />
                             <div class="container p-3">
                               <h6><b>{animal.name}</b></h6>
                               <p className="truncate">{animal.description}</p>
                             </div>
-                          </div>
+                          </div> */}
+                          <AnimalCard obj={animal} ></AnimalCard>
                         </InfoBox>
                       )}
                     </Marker>
