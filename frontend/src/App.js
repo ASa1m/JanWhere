@@ -60,6 +60,11 @@ function App() {
               path="/about"
               element={<AboutUs />}
             />
+          <Route
+                      exact
+                      path="/contact"
+                      element={<ContactUs />}
+                    />
           </Routes>
           <Container>
             <Row>
@@ -76,11 +81,7 @@ function App() {
                       path="/discover/:name"
                       element={<Discover />}
                     />
-                    <Route
-                      exact
-                      path="/contact"
-                      element={<ContactUs />}
-                    />
+                   
                       <Route
                       exact
                       path="/post/:id"
