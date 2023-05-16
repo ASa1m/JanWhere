@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import TextField from '@mui/material/TextField';
+
 
 const Contact = () => {
   const Wrapper = styled.section`
@@ -51,33 +55,83 @@ const Contact = () => {
       <div className="container">
         <div className="contact-form">
           <form
-            action="https://formspree.io/f/xgedgjkr"
+            action="https://formspree.io/f/xwkjzwen"
             method="POST"
             className="contact-inputs">
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              autoComplete="off"
-              required
-            />
+             <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+    
+     <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1 },
+      }}
+      noValidate
+      autoComplete="off"
+    >
 
-            <input
-              type="email"
-              name="Email"
-              placeholder="Email"
-              autoComplete="off"
-              required
-            />
+      <div className="input-field">
+              <input
+                id="email"
+                type="email"
+              />
+              <label htmlFor="email">Email</label>
+            </div>
 
-            <textarea
-              name="message"
-              cols="30"
-              rows="6"
-              autoComplete="off"
-              required></textarea>
+            <div className="input-field">
+              <input
+                id="username"
+                type="text"
+              />
+              <label htmlFor="username">Username</label>
+            </div>
 
-            <input type="submit" value="send" />
+            {/* <div className="input-field" style={{marginTop : "20px"}}>
+              <textarea style={{
+                    height: "150px",
+                    marginTop: "10px",
+                  padding: "20px"}}
+                id="message"
+                type="text"
+                name= "message"
+              />
+              <label htmlFor="message" style={{left: "10px"}}> Your feedback</label>
+            </div> */}
+              <TextField style={{width:"100%", color: "white"}}
+          id="standard-multiline-static"
+          label="Your feedback"
+          color="secondary"
+          multiline
+          rows={4}
+          defaultValue="Default Value"
+          variant="standard"
+        />
+
+    </Box>
+    </Box>
+
+    <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <button
+                  style={{
+                    width: "80px",
+                    borderRadius: "3px",
+                    letterSpacing: "1px",
+                    marginTop: "0.3grem",
+                    height: "40px"
+                
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3 text-white"
+                >
+                  Submit
+                </button>
+              </div>
           </form>
         </div>
       </div>
