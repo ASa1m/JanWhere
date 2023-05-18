@@ -1,16 +1,18 @@
-import React, { useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SplitButton from 'react-bootstrap/SplitButton';
-import { useNavigate, useParams } from 'react-router-dom';
 
-function SplitVariantExample(props) {
+function FilterBar(props) {
     
-    const navigate = useNavigate();
+    const [toggleLabel, setToggleLabel] = useState({});
 
-    const { name } = useParams();
+    const handleSelect = (filterType, value) => {
+        props.filterAnimals(filterType, value);
+        setToggleLabel((prevKeyValuePairs) => ({
+          ...prevKeyValuePairs,
+          [filterType]: value,
+        }));
 
-    const handleSelect = (eventKey) => {
-        navigate(`/discover/${eventKey.toLowerCase()}`);
     };
 
     const dropdownCreate = (value) => {
@@ -18,15 +20,13 @@ function SplitVariantExample(props) {
         return props.obj.map((animal, index) => {
             if (!labels.includes(animal[value])) {
                 labels.push(animal[value]);
-                console.log(name);
-                console.log(animal[value]);
-                return <Dropdown.Item key={index}  active={name==animal[value]} eventKey={animal[value]} onSelect={handleSelect}>{animal[value]}</Dropdown.Item>;
+                return <Dropdown.Item key={index}  active={toggleLabel[value]===animal[value]} eventKey={animal[value]} onClick={(event) => handleSelect(value,animal[value], event)}>{animal[value]}</Dropdown.Item>;
             }
         });
     };
 
   return (
-    <>
+    <div className="filter-bar">
 {[{name: 'Name',variant: 'primary'}, {name: 'Region',variant: 'secondary'}, {name: 'Population',variant: 'success'}, {name: 'Category',variant: 'danger'}].map(
         (name) => (
           <SplitButton
@@ -34,14 +34,16 @@ function SplitVariantExample(props) {
             id={`dropdown-split-variants-${name.variant}`}
             variant={name.variant.toLowerCase()}
             title={name.name}
-            toggleLabel=''
+            toggleLabel={toggleLabel[name.name.toLowerCase()] === undefined ? 'All' : toggleLabel[name.name.toLowerCase()]}
           >
+            <Dropdown.Item 
+            eventKey="all" onClick={(event) => handleSelect(name.name.toLowerCase(),"all", event)}>All</Dropdown.Item>
             {dropdownCreate(name.name.toLowerCase())}
           </SplitButton>
         ),
       )}
-    </>
+    </div>
   );
 }
 
-export default SplitVariantExample;
+export default FilterBar;

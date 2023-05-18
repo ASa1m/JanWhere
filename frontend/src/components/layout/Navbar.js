@@ -55,12 +55,7 @@ function Navibar() {
                             {isAuthenticated ? (
                                 <Nav.Link
                                     as={Link} to="/dashboard"
-                                    style={{
-                                        width: "120px",
-                                        borderRadius: "3px",
-                                        letterSpacing: "1.5px"
-                                    }}
-                                    className="btn waves-effect waves-light hoverable blue accent-3"
+                                    className="btn waves-effect waves-light hoverable blue accent-3 white-text"
                                 >
                                     Dashboard
                                 </Nav.Link>

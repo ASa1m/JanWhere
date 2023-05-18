@@ -10,6 +10,21 @@ function Discover() {
     const [animalsToShow, setAnimalsToShow] = useState([]);
     const [name] = useState(useParams().name);
 
+    const filterAnimals = (filterType, eventKey) => {
+        if (eventKey === 'all') {
+            setAnimalsToShow(animals);
+        }
+        else {
+            if (isNaN(eventKey)) {
+                setAnimalsToShow(animals.filter(animal => animal[filterType].toLowerCase().includes(eventKey.toLowerCase())));
+            }
+            else {
+                setAnimalsToShow(animals.filter(animal => animal[filterType] === eventKey));
+            }
+        }
+    };
+
+
     useEffect(() => {
         axios.get('/api/animals/list')
             .then(response => {
@@ -39,7 +54,7 @@ function Discover() {
         <div className="content" style={{ fontFamily: "monospace" }}>
             <h3 className="center text-white">Discover the world of animals</h3>
             <div className="center text-white">
-                <FilterBar obj={animals} />
+                <FilterBar obj={animals} filterAnimals={filterAnimals} />
             </div>
             <div className="d-flex flex-wrap justify-content-center">
                 {fetchData()}
