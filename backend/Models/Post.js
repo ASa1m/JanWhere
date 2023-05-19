@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let postSchema = new Schema({
-    name: {
+    animal_id: {
+        type: Array
+    },
+    user_id: {
         type: String
     },
     region: {
@@ -29,6 +32,23 @@ let postSchema = new Schema({
     content: {
         type: String
     }
+    , likes: {
+        type: Array
+    }
+    , comments: {
+        
+            user_id: {
+                type: String
+            },
+            content: {
+                type: String
+            },
+            date: {
+                type: Date,
+                default: Date.now
+
+             }
+    }
 });
 
-module.exports = mongoose.model('Post', postSchema)
+module.exports = mongoose.model('post', postSchema)
