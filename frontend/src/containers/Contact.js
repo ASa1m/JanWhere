@@ -87,7 +87,7 @@ const Contact = () => {
                     <MailOutlineIcon /> Email
                   </label>
                 </div>
-                <div className="input-field">
+                <div className="input-field" >
                   <input id="name" type="text" />
 
                   <label htmlFor="name">
@@ -106,15 +106,15 @@ const Contact = () => {
                   <label htmlFor="feedback"> <ChatBubbleOutlineIcon/>  Feedback </label>
                 </div> */}
                 <div className="input-field text-wrap border-bottom">
+                  <label htmlFor="feedback">
+                    <ChatBubbleOutlineIcon maginBottom="2px" /> Feedback
+                  </label>
                   <textarea
                     id="feedback"
-                    style={{ height: "120px", minHeight: "120px", resize: "vertical" , color: "white"}}
+                    style={{ height: "120px", minHeight: "120px", resize: "vertical" , color: "white", marginTop: "10px", padding: "20px"}}
                     wrap="soft"
                   ></textarea>
 
-                  <label htmlFor="feedback">
-                    <ChatBubbleOutlineIcon /> Feedback
-                  </label>
                 </div>
 
                 {/* <Box sx={{ display: "flex", alignItems: "center" }}>
