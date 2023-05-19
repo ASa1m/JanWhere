@@ -22,7 +22,7 @@ body h3 {
 
 body {
   color: white;
-  background-color: #000500;
+  background-color: green;
 }
 
 .card {
@@ -174,4 +174,133 @@ a {
 input {
   background-color: #000500;
   color: white;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  margin-top:50px;
+}
+
+.share {
+    /* width: 70%; */
+    border-radius: 10px;
+    box-shadow: 0px 0px 11px 3px rgba(34,76,150,0.82);
+    -webkit-box-shadow: 0px 0px 11px 3px rgba(34,76,150,0.82);
+    -moz-box-shadow: 0px 0px 11px 3px rgba(34,76,150,0.82);
+    padding: 10px;
+    margin: 15px;
+  }
+
+.comment {
+    /* width: 30%; */
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 11px 3px rgba(34, 76, 150, 0.82);
+    -webkit-box-shadow: 0px 0px 11px 3px rgba(34, 76, 150, 0.82);
+    -moz-box-shadow: 0px 0px 11px 3px rgba(34, 76, 150, 0.82);
+    padding: 10px;
+    margin: 15px;
+    position: relative;
+    flex: 0 0 25%;
+  }
+
+.comment input {
+  position: absolute;
+  bottom: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+  width: 91%;
+}
+
+@media only screen and (max-width: 992px)  {
+.comment input {
+      position: relative;
+      margin: auto;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      padding-top: 20px;
+  }
+}
+  
+  .shareWrapper {
+    padding: 10px;
+  }
+  
+  .shareTop {
+    display: flex;
+    align-items: center;
+  }
+  
+  .shareProfileImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .shareInput {
+    border: none;
+    width: 5%;
+  }
+  
+  .shareInput:focus {
+    outline: none;
+  }
+  
+  .shareHr {
+    margin: 10px;
+    color: white;
+  }
+  
+  .shareBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  
+ 
+  
+  .shareOption{
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      cursor: pointer;
+  }
+  
+  .shareIcon{
+      font-size: 18px;
+      margin-right: 3px;
+  }
+  
+  .shareOptionText{
+      font-size: 12px;
+      font-weight: 400;
+  }
+  
+  .shareButton{
+      border: none;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: #2979FF;
+      font-weight: 400;
+      margin-right: 20px;
+      cursor: pointer;
+      color: white;
+  }
+
+  .postImg{
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.postText{
+  color: white;
+  font-size: 14px;
+  margin-left: 8px;
 }

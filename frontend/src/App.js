@@ -61,11 +61,19 @@ function App() {
               path="/about"
               element={<AboutUs />}
             />
+<<<<<<< Updated upstream
           <Route
                       exact
                       path="/contact"
                       element={<ContactUs />}
                     />
+=======
+<Route
+ exact
+ path="/test"
+ element={<Test />}
+/>
+>>>>>>> Stashed changes
           </Routes>
           <Container>
             <Row>
@@ -82,7 +90,15 @@ function App() {
                       path="/discover/:name"
                       element={<Discover />}
                     />
+<<<<<<< Updated upstream
                    
+=======
+                    <Route
+                      exact
+                      path="/contact"
+                      element={<ContactUs />}
+                    />
+>>>>>>> Stashed changes
                       <Route
                       exact
                       path="/post/:id"

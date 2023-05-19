@@ -11,6 +11,14 @@
     },
     "author": "",
     "dependencies": {
+<<<<<<< Updated upstream
         "@react-google-maps/marker-clusterer": "^2.16.1"
+=======
+        "@material-ui/icons": "^4.11.3",
+        "@mui/material": "^5.13.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-image-crop": "^10.0.11"
+>>>>>>> Stashed changes
     }
 }
