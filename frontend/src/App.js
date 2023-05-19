@@ -23,6 +23,7 @@ import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
 import StickyButton from './components/layout/StickyButton'
+import Test from './components/layout/Test'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -61,19 +62,11 @@ function App() {
               path="/about"
               element={<AboutUs />}
             />
-<<<<<<< Updated upstream
           <Route
                       exact
                       path="/contact"
                       element={<ContactUs />}
                     />
-=======
-<Route
- exact
- path="/test"
- element={<Test />}
-/>
->>>>>>> Stashed changes
           </Routes>
           <Container>
             <Row>
@@ -90,15 +83,7 @@ function App() {
                       path="/discover/:name"
                       element={<Discover />}
                     />
-<<<<<<< Updated upstream
                    
-=======
-                    <Route
-                      exact
-                      path="/contact"
-                      element={<ContactUs />}
-                    />
->>>>>>> Stashed changes
                       <Route
                       exact
                       path="/post/:id"
@@ -123,7 +108,14 @@ function App() {
                         </PrivateRoute>
                       }
                     />
+                    <Route
+                      exact
+                      path="/test"
+                      element={<Test />}
+                      >
+                    </Route>
                   </Routes>
+                  
                 </div>
               </Col>
             </Row>

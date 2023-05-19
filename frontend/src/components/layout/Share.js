@@ -3,7 +3,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ShareIcon from '@mui/icons-material/Share';
 import React from 'react'
 import Picture from '../../../src/Saim.jpg'
-
+import Caraousel from './Carousel';
 export default function Share(props) {
   return (
     <div className='d-flex flex-column'>
@@ -14,7 +14,7 @@ export default function Share(props) {
             <img className="shareProfileImg" src={Picture} alt="/"/>
             <span className="postText">{props.obj.description}</span>
           </div>
-          <div><img className="postImg" src={props.obj.image} alt="Failed to load" /> </div>
+          <div className='postImg'> <Caraousel images={props.obj.images}></Caraousel> </div>
           <hr className="shareHr"/>
           <div className="shareBottom justify-content-center justify-content-lg-between">
             <div className="d-flex">
