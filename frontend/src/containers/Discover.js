@@ -6,34 +6,34 @@ import axios from 'axios';
 
 function Discover() {
 
-    const [animals, setAnimals] = useState([]);
-    const [animalsToShow, setAnimalsToShow] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [postsToShow, setPostsToShow] = useState([]);
     const [name] = useState(useParams().name);
 
-    const filterAnimals = (filterType, eventKey) => {
+    const filterPosts = (filterType, eventKey) => {
         if (eventKey === 'all') {
-            setAnimalsToShow(animals);
+            setPostsToShow(posts);
         }
         else {
             if (isNaN(eventKey)) {
-                setAnimalsToShow(animals.filter(animal => animal[filterType].toLowerCase().includes(eventKey.toLowerCase())));
+                setPostsToShow(posts.filter(post => post[filterType].toLowerCase().includes(eventKey.toLowerCase())));
             }
             else {
-                setAnimalsToShow(animals.filter(animal => animal[filterType] === eventKey));
+                setPostsToShow(posts.filter(post => post[filterType] === eventKey));
             }
         }
     };
 
 
     useEffect(() => {
-        axios.get('/api/animals/list')
+        axios.get('/api/posts/')
             .then(response => {
-                setAnimals(response.data);
+                setPosts(response.data);
                 if (name === undefined) {
-                    setAnimalsToShow(response.data);
+                    setPostsToShow(response.data);
                 }
                 else {
-                    setAnimalsToShow(response.data.filter(animal => animal.name.toLowerCase().includes(name.toLowerCase())));
+                    setPostsToShow(response.data.filter(post => post.name.toLowerCase().includes(name.toLowerCase())));
                 }
             })
             .catch(error => {
@@ -42,19 +42,19 @@ function Discover() {
     }, []);
 
     const fetchData = () => {
-        if (animalsToShow.length === 0) {
-            return <div className="center text-white">No animals found</div>;
+        if (postsToShow.length === 0) {
+            return <div className="center text-white">No posts found</div>;
         }
-        return animalsToShow.map((animal, index) => {
-            return <Card obj={animal} key={index} />;
+        return postsToShow.map((post, index) => {
+            return <Card obj={post} key={index} />;
         });
     };
 
     return (
         <div className="content" style={{ fontFamily: "monospace" }}>
-            <h3 className="center text-white">Discover the world of animals</h3>
+            <h3 className="center text-white">Discover the world of Animals</h3>
             <div className="center text-white">
-                <FilterBar obj={animals} filterAnimals={filterAnimals} />
+                <FilterBar obj={posts} filterPosts={filterPosts} />
             </div>
             <div className="d-flex flex-wrap justify-content-center">
                 {fetchData()}

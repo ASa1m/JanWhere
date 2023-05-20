@@ -61,12 +61,12 @@ const handleClick = () => {
       <CardMedia  onClick={handleClick}
         component="img"
         height="194"
-        image={props.obj.image ? props.obj.image : PlaceHoder }  //props.obj.Image
+        image={props.obj.images[0] ? props.obj.images[0] : PlaceHoder }  //props.obj.Image
         alt={props.obj.title ? props.obj.title+" image" : "Image not found"  } //props.obj.Title
       />
       <CardContent  onClick={handleClick}>
         <Typography variant="body2" color="text.secondary">
-          {props.obj.description ? props.obj.description : "No cover"  }   
+          {props.obj.cover ? props.obj.cover : "No cover"  }   
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -88,7 +88,7 @@ const handleClick = () => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {props.obj.Content ? props.obj.Content : "No content" }
+            {props.obj.description ? props.obj.description : "No content" }
           </Typography>
         </CardContent>
       </Collapse>

@@ -8,6 +8,7 @@ const animals = require("./routes/api/animals");
 const developers = require("./routes/api/about");
 const feedbacks = require("./routes/api/feedback");
 const contact = require("./routes/api/contact");
+const posts = require("./routes/api/posts");
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use("/api/developers", developers);
 app.use('/static', express.static('img'));
 app.use("/api/feedbacks", feedbacks);
 app.use("/api/contact", contact);
+app.use("/api/posts", posts);
 
 
 
