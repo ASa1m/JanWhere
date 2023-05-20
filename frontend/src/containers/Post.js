@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Share from "../components/layout/Share"
 
+
 function AnimalPost(props) {
 
     const [animal, setAnimal] = useState({});
