@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let postSchema = new Schema({
     animal_id: {
-        type: Array
+        type: String
     },
     user_id: {
         type: String
@@ -45,7 +45,6 @@ let postSchema = new Schema({
             },
             date: {
                 type: Date,
-                default: Date.now
 
              }
     }

@@ -17,7 +17,7 @@ function FilterBar(props) {
 
     const dropdownCreate = (value) => {
         const labels = [];
-        return props.obj.map((animal, index) => {
+        props.obj.forEach((animal, index) => {
             if (!labels.includes(animal[value])) {
                 labels.push(animal[value]);
                 return <Dropdown.Item key={index}  active={toggleLabel[value]===animal[value]} eventKey={animal[value]} onClick={(event) => handleSelect(value,animal[value], event)}>{animal[value]}</Dropdown.Item>;

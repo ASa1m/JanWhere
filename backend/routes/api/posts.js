@@ -14,31 +14,39 @@ router.get("/", (req, res) => {
 
 router.post("/addpost", (req, res) => {
 
-    const animalId = '';
+    // var animalId = '';
 
-    //Find animal ID where name = req.body.animalName and get its ID
-    Animal.find({name: req.body.animalName})
-        .then(animal => {
-            animalId = animal._id;
-        })
-
+    // //Find animal ID where name = req.body.animalName and get its ID
+    // Animal.find({name: req.body.animal_id})
+    //     .then(animal => {
+    //         if (animal._id)
+    //         animalId = animal._id;
+    //         else
+    //         animalId = '';
+    //     })
 
 
     const newPost = new Post({
-        animal_id: animalId,
+        animal_id: req.body.animal_id,
         user_id: req.body.user_id,
-        region: req.body.region,
-        location: req.body.location,
-        date: req.body.date,
-        images: req.body.images,
+        location: {
+            latitute: req.body.location.latitute,
+            longitude: req.body.location.longitude
+        },
         cover: req.body.cover,
         content: req.body.content,
-        likes: req.body.likes,
-        comments: req.body.comments
+        likes: [],
+        comments: req.body.comments,
+        images: req.body.images,
+        region : req.body.region
     });
 
-    newPost.save().then(() => res.json('Post added!'))
+    newPost.save()
+        .then(() => res.json( newPost._id ))
         .catch(err => res.status(400).json('Error: ' + err));
+
+
+
 });
         
 router.get("/:id", (req, res) => {
@@ -60,10 +68,14 @@ router.get("/:id", (req, res) => {
                     sendPost.animal_id = animalName;
                     
                 })
-                .catch(err => res.status(400).json('Error: ' + err))
                 .then(User.findById(post.user_id)
                     .then(user => {
+                        if (user) {
                         sendPost.user_id = user.name;
+                        }
+                        else
+                        sendPost.user_id = 'Unknown';
+
                     }
                     ).then(() => {
                         sendPost._id = post._id;
@@ -78,7 +90,6 @@ router.get("/:id", (req, res) => {
                         res.json(sendPost);
                     }
                     )
-                    .catch(err => res.status(400).json('Error: ' + err))
 
 
                 )
@@ -90,6 +101,71 @@ router.get("/:id", (req, res) => {
 }
 
 );
+
+router.post("/:id/addcomment", (req, res) => {
+
+    //Add now time
+    req.body.date = new Date().toISOString(); 
+
+    console.log(req.body);
+    Post.findByIdAndUpdate(
+        req.params.id,
+        { $push: { comments: req.body } },
+        { new: true }
+      )
+        .then(updatedPost => {
+          // Handle the updated post or send a success response
+          res.json(updatedPost.comments);
+        })
+        .catch(err => {
+          // Handle the error
+          res.status(500).json({ error: 'Failed to add comment to post' });
+        });
+
+});
+
+router.post("/:id/like", (req, res) => {
+
+    //Add now time
+    req.body.date = new Date().toISOString();
+
+    Post.findByIdAndUpdate(
+        req.params.id,
+        { $push: { likes: req.body } },
+        { new: true }
+        )
+        .then(updatedPost => {
+            // Handle the updated post or send a success response
+            res.json(updatedPost.likes);
+        })
+        .catch(err => {
+            // Handle the error
+            res.status(500).json({ error: 'Failed to add like to post' });
+        });
+
+});
+
+router.post("/:id/unlike", (req, res) => {
+    
+    Post.findByIdAndUpdate(
+        req.params.id,
+        { $pull: { likes: req.body } },
+        { new: true }
+        )
+        .then(updatedPost => {
+            // Handle the updated post or send a success response
+            res.json(updatedPost.likes);
+        }
+        )
+        .catch(err => {
+            // Handle the error
+            res.status(500).json({ error: 'Failed to remove like from post' });
+        }
+        );
+
+
+});
+
 
 
 module.exports = router;

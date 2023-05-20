@@ -9,7 +9,7 @@ function StickyButton(props) {
     const isAuthenticated = store.getState().auth.isAuthenticated;
 
     const handleClick = () => {
-        navigate('/post');
+        navigate('/addpost');
     }
 
 

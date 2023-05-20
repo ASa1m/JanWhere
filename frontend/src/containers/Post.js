@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Share from "../components/layout/Share"
 
 
-function AnimalPost(props) {
+function AnimalPost() {
 
     const [post, setPost] = useState({});
     const { id } = useParams();
@@ -24,7 +24,7 @@ function AnimalPost(props) {
           
 
   return (
-  <Share obj={post} comments={post.comments} ></Share>
+  <Share obj={post} ></Share>
   );
 }
 

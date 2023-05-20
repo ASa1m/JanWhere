@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import React from 'react';
-import PlaceHoder from '../../placeholder-image.png';
+import Avatar from '@mui/material/Avatar';
 
 function CommentCard(props) {
 
@@ -8,13 +8,15 @@ function CommentCard(props) {
     return (
         <Card className={"comments card flex-row"}>
             <div className={"col-2 d-flex align-items-center flex-wrap"}>
-                <img className='cmntProfileImg' variant="top" src={props.image === '' ? PlaceHoder : props.image} alt="Animal Placeholder" width={'100%'} height={'auto'} />
+                <Avatar sx={{ bgcolor: 'blue' }} aria-label="recipe">
+                    {props.obj.user_id ? props.obj.user_id[0] : "U"}
+                </Avatar>
             </div>
             <div className="card-content col-10">
-                <div className='font-weight-bold'>{props.name}</div>
+                <div className='font-weight-bold'>{props.obj.user_id}</div>
                 <div>
                     <div>
-                        {props.comment}
+                        {props.obj.content}
                     </div>
                 </div>
             </div>

@@ -33,7 +33,7 @@ function Caraousel(props) {
     fontWeight: 'bold',
   }
   return (
-    <div className="Caraousel">
+    <div className="Caraousel mt-4">
       <div style={{ textAlign: "center" }}>
        
         <div style={{
@@ -48,7 +48,7 @@ function Caraousel(props) {
             slideNumber={false}
             slideNumberStyle={slideNumberStyle}
             captionPosition="none"
-            automatic={false}
+            automatic={true}
             dots={true}
             pauseIconColor="white"
             pauseIconSize="40px"
@@ -56,6 +56,7 @@ function Caraousel(props) {
             slideImageFit="cover"
             thumbnails={false}
             thumbnailWidth="100px"
+            width = "100%"
           
           />
         </div>

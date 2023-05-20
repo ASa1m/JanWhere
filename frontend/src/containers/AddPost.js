@@ -1,39 +1,30 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { TextField, Button, Container, Typography, Chip } from "@mui/material";
 import {
   GoogleMap,
-  Marker,
-  useLoadScript,
-  LoadScript,
+  Marker, LoadScript
 } from "@react-google-maps/api";
+import axios from 'axios';
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { v4 as uuidv4 } from "uuid";
 
-
-
-
-const AddPost = () => {
+const AddPost = ( { currentUser } ) => {
   const [position, setPosition] = useState(null);
 
   const onMapClick = (event) => {
     setPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   };
+
 const images=[]
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState([]);
+  const [file, setFile] = useState([]);
   const [previews, setPreviews] = useState([]);
-  const [tags, setTags] = useState([
-    { id: 1, name: "Lion", selected: false },
-    { id: 2, name: "Tiger", selected: false },
-    { id: 3, name: "Elephant", selected: false },
-    { id: 4, name: "Snake", selected: false },
-    { id: 5, name: "Panda", selected: false },
-    { id: 6, name: "Human", selected: false },
-  ]);
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-  });
+  const [tags, setTags] = useState([]);
+
+  const navigate = useNavigate();
 
   const center = useMemo(
     () => ({ lat: 33.64491333779565, lng: 72.99209107579742 }),
@@ -51,31 +42,83 @@ const images=[]
   };
 
   const handleSubmit = (e) => {
+    var newPost = {images:[]};
     e.preventDefault();
-    console.log("Title:", title);
-    console.log("Content:", content);
-    console.log("Files:", files);
-    console.log("Tags:", tags);
-    // console.log('Previews:', previews);
-    setTitle("");
-    setContent("");
-    setFiles([]);
-    setPreviews([]);
-
-
 
     //upload images to cloudinary
+    const formData = new FormData();
+    for (const fil of file) {
+      formData.append('images', fil);
+    }
+
+    axios.post('/api/upload', formData)
+      .then(res => {
+        console.log(res.data.imageUrls);
+        for (const image of res.data.imageUrls) {
+          newPost.images.push(image);
+        }
+    newPost.cover = title;
+    newPost.content = content;
+    newPost.animal_id = tags[0] ? tags[0].id : null;
+    newPost.location = {
+      latitude: position ? position.lat : 0,
+      longitude: position ? position.lng : 0
+    }
+
+    newPost.user_id = currentUser.id;
+    console.log(newPost);
+      }
+      ).then(() => {
+    axios.post('/api/posts/addpost', newPost)
+      .then(res => 
+        {
+          console.log(res.data);
+          // navigate('/post/'+res.data);
+        }
+      )
+      .catch(err => console.log(err));
+      }
+      )
+
+
   };
+
+  useEffect(() => {
+    axios.get('/api/animals/list')
+      .then(animals =>
+        animals.data.forEach(animal =>
+          {
+            setTags(prevTags =>
+              [...prevTags, {id:animal._id, name:animal.name, selected:false}]
+            )
+          }
+          )
+        )
+  }, [])
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     setFiles(images.push(selectedFiles));
     const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
     setPreviews(previewUrls);
+    const files = e.target.files;
+    setFile(files);
 
-    
 
   };
+
+  // useEffect (() => 
+  //   axios.get('/api/animals/list')
+  //   .then (animals =>
+  //     animals.data.map(animal =>
+  //       {
+  //         console.log(animal.name);
+  //         // tags.push({id:animal._id, name:animal.name, selected:false});
+  //       }
+  //       )
+  //     )
+  // )
+
 
   return (
     <Container
@@ -104,6 +147,7 @@ const images=[]
             label="Title"
             variant="outlined"
             fullWidth
+            required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             margin="normal"
@@ -128,6 +172,7 @@ const images=[]
             multiline
             rows={4}
             fullWidth
+            required
             value={content}
             onChange={(e) => setContent(e.target.value)}
             margin="normal"
@@ -238,4 +283,8 @@ const images=[]
   );
 };
 
-export default AddPost;
+const mapStateToProps = (state) => ({
+  currentUser: state.auth.user,
+});
+
+export default connect(mapStateToProps)(AddPost);
