@@ -1,16 +1,28 @@
 import React from 'react';
 import { Carousel } from 'react-carousel-minimal';
+import Placeholder from '../../placeholder-image.png';
 
 function Caraousel(props) {
  const data = [];
- props.images.forEach(element => {
+ if (props.images){
+  props.images.forEach(element => {
     data.push(
         {
             image: element,
             caption: ""
         }
     )
- }); 
+ }
+);
+  }
+  else{
+    data.push(
+      {
+        image: Placeholder,
+        caption: "No caption"
+      }
+    )
+  }
 
   const captionStyle = {
     fontSize: '2em',
@@ -31,8 +43,8 @@ function Caraousel(props) {
             className="postImg"
             data={data}
             time={2000}
-            captionStyle={null}
-            radius="10px"
+            captionStyle={captionStyle}
+            radius="5px"
             slideNumber={false}
             slideNumberStyle={slideNumberStyle}
             captionPosition="none"
