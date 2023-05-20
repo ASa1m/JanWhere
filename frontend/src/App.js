@@ -62,6 +62,11 @@ function App() {
               path="/about"
               element={<AboutUs />}
             />
+      <Route
+      exact
+      path="/post/:id"
+      element={<Post />}
+    />
           <Route
                       exact
                       path="/contact"
@@ -84,11 +89,6 @@ function App() {
                       element={<Discover />}
                     />
                    
-                      <Route
-                      exact
-                      path="/post/:id"
-                      element={<Post />}
-                    />
 
                     <Route
                       exact

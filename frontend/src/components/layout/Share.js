@@ -9,12 +9,12 @@ export default function Share(props) {
     <div className='d-flex flex-column'>
     <div className="container flex-column flex-xs-column flex-sm-column flex-lg-row">
       <div className="share col-lg-8">
-        <div className="shareWrapper">
+        <div className="shareWrapper ">
           <div className="shareTop">
             <img className="shareProfileImg" src={Picture} alt="/"/>
             <span className="postText">{props.obj.description}</span>
           </div>
-          <div className='postImg'> <Caraousel images={props.obj.images}></Caraousel> </div>
+           <Caraousel className="postImg" images={props.obj.images}></Caraousel>
           <hr className="shareHr"/>
           <div className="shareBottom justify-content-center justify-content-lg-between">
             <div className="d-flex">

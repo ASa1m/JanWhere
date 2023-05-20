@@ -31,7 +31,6 @@ function Caraousel(props) {
             className="postImg"
             data={data}
             time={2000}
-       
             captionStyle={null}
             radius="10px"
             slideNumber={false}
@@ -45,9 +44,7 @@ function Caraousel(props) {
             slideImageFit="cover"
             thumbnails={false}
             thumbnailWidth="100px"
-            style={{
           
-            }}
           />
         </div>
       </div>
