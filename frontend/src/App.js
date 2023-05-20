@@ -24,6 +24,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
 import StickyButton from './components/layout/StickyButton'
 import Test from './components/layout/Test'
+import AddPost from './containers/AddPost'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -67,6 +68,14 @@ function App() {
       path="/post/:id"
       element={<Post />}
     />
+      <Route
+                      path="/AddPost"
+                      element={
+                        <PrivateRoute>
+                          <AddPost />
+                        </PrivateRoute>
+                      }
+                    />
           <Route
                       exact
                       path="/contact"
@@ -100,6 +109,7 @@ function App() {
                       path="/signup"
                       element={<Signup />}
                     />
+                   
                     <Route
                       path="/dashboard"
                       element={
@@ -112,8 +122,8 @@ function App() {
                       exact
                       path="/test"
                       element={<Test />}
-                      >
-                    </Route>
+                      />
+                   
                   </Routes>
                   
                 </div>
