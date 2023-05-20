@@ -29,7 +29,36 @@ function AnimalPost(props) {
             "https://www.tusktravel.com/blog/wp-content/uploads/2020/07/Best-Time-to-Visit-Darjeeling-for-Honeymoon.jpg",
             "https://images.ctfassets.net/bth3mlrehms2/6Ypj2Qd3m3jQk6ygmpsNAM/61d2f8cb9f939beed918971b9bc59bcd/Scotland.jpg?w=750&h=422&fl=progressive&q=50&fm=jpg",
             "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg"
-        ]
+        ],
+        comments:[
+            {
+                name:"Saim",
+                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+                comment:"Hello World"
+            },
+            {
+                name:"Saim",
+                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+                comment:"Hello World"
+            },
+            {
+                name:"Saim",
+                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+                comment:"Hello World"
+
+            }
+        ],
+        likes: 113,
+        date: "2023-05-20T14:48:00.000Z",
+        location: {
+            latitude: 24.8607,
+            longitude: 67.0011
+        },
+        region: "Asia",
+        category: "Mammal",
+        name: "Lion",
+        population: 10000,
+        _id: "60f0b0b0e6b3a1b0b4f0b0b0"
     }
 
 
