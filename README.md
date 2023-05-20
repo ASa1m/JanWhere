@@ -27,5 +27,5 @@ Open API URL on [http://localhost:5000/](http://localhost:5000/) to view it in t
 
 Launch both server and client simultaneously
 - First install concurrently globally in Node.js using `npm install concurrently -g`
-- Set node options to use openssl-legacy mode using `$env:NODE_OPTIONS="--openssl-legacy-provider`
+- Set node options to use openssl-legacy mode using `$env:NODE_OPTIONS="--openssl-legacy-provider"`
 - Now run the command `npm run dev`

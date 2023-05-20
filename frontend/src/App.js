@@ -24,6 +24,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
 import StickyButton from './components/layout/StickyButton'
 import Test from './components/layout/Test'
+import PostForm from './components/layout/PostForm'
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -89,6 +90,15 @@ function App() {
                       element={<Discover />}
                     />
                    
+                    <Route
+                    exact
+                    path = "/postform"
+                    element={
+                      <PrivateRoute>
+                        <PostForm />
+                      </PrivateRoute>
+                    }
+                    />
 
                     <Route
                       exact
