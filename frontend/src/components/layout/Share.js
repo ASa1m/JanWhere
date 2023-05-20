@@ -3,6 +3,9 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ShareIcon from '@mui/icons-material/Share';
 import React from 'react'
 import Picture from '../../../src/Saim.jpg'
+import CommentCard from './CommentCard'
+
+
 import Caraousel from './Carousel';
 export default function Share(props) {
   return (
@@ -39,10 +42,13 @@ export default function Share(props) {
       </div>
       <div className="comment col-lg-4">
         <input placeholder="Write a comment" className="shareInput"/>
-
+        {props.comments.map((comment) => (
+          <CommentCard name={comment.name} image={comment.image} comment={comment.comment}/>
+        ))}
       </div>
       </div>
       <div className='container'>
+       
         1234
       </div>
     </div>

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 import Box from "@mui/material/Box";
-import Input from "@mui/material/Input";
-import TextField from "@mui/material/TextField";
-import { Container, Row, Col } from "react-bootstrap";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import PersonIcon from "@mui/icons-material/Person";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import axios from "axios";
 
 const Contact = () => {
   const Wrapper = styled.section`
@@ -42,13 +42,45 @@ const Contact = () => {
     }
   `;
 
+  const nameInput = useRef(null);
+  const emailInput = useRef(null);
+  const messageInput = useRef(null);
+
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: nameInput.current.value,
+      email: emailInput.current.value,
+      message: messageInput.current.value,
+    };
+
+    console.log(data);
+
+    axios.post ("/api/feedbacks/add", data).then((res) => {
+      console.log(res.data);
+    });
+  };
+
+  useEffect(() => {
+    axios.get("/api/contact/").then((res) => {
+      setPhone(res.data[0].phone);
+      setEmail(res.data[0].email);
+      setAddress(res.data[0].address);
+    });
+  }, []);
+
   return (
     <Wrapper>
       <h2 className="text-center mb-3">We'd love your feedback! </h2>
 
       <iframe
         title="JanWhere Address"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26574.150557852416!2d72.98561421616209!3d33.637235731422976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9675aaaaaaab%3A0xc5180922c44eb86b!2sNational%20University%20of%20Sciences%20%26%20Technology%20(NUST)!5e0!3m2!1sen!2s!4v1684253260469!5m2!1sen!2s"
+        src={address ? address : "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26574.150557852416!2d72.98561421616209!3d33.637235731422976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df9675aaaaaaab%3A0xc5180922c44eb86b!2sNational%20University%20of%20Sciences%20%26%20Technology%20(NUST)!5e0!3m2!1sen!2s!4v1684253260469!5m2!1sen!2s"}
         width="100%"
         height="450"
         style={{ border: 0 }}
@@ -58,10 +90,10 @@ const Contact = () => {
       ></iframe>
 
       <div className="container">
-        <div className="contact-form">
+        <div className="contact-form col-6">
           <form
-            action="https://formspree.io/f/xwkjzwen"
-            method="POST"
+            // action="https://formspree.io/f/xwkjzwen"
+            onSubmit={handleSubmit}
             className="contact-inputs"
           >
             <Box
@@ -81,14 +113,14 @@ const Contact = () => {
                 autoComplete="off"
               >
                 <div className="input-field">
-                  <input id="email" type="email" />
+                  <input id="email" type="email" ref={emailInput} />
                   <label htmlFor="email">
                     {" "}
                     <MailOutlineIcon /> Email
                   </label>
                 </div>
                 <div className="input-field" >
-                  <input id="name" type="text" />
+                  <input id="name" type="text" ref={nameInput} />
 
                   <label htmlFor="name">
                     {" "}
@@ -113,6 +145,7 @@ const Contact = () => {
                     id="feedback"
                     style={{ height: "120px", minHeight: "120px", resize: "vertical" , color: "white", marginTop: "10px", padding: "20px"}}
                     wrap="soft"
+                    ref={messageInput}
                   ></textarea>
 
                 </div>
@@ -175,11 +208,11 @@ const Contact = () => {
             <h3 className="text-center">Need to talk to us?</h3>
             {/* <address> */}
             <h5 className="text-center">
-              <MailOutlineIcon /> janwhere@gmail.com
+              <MailOutlineIcon /> {email ? email : "janwhere@gmail.com"}
             </h5>
 
             <h5 className="text-center">
-              <LocalPhoneOutlinedIcon /> +923358796261
+              <LocalPhoneOutlinedIcon /> {phone ? phone : "923358796261"}
             </h5>
 
             {/* <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>

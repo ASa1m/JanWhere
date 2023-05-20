@@ -40,6 +40,8 @@ function App() {
       caption: "Darjeeling"
     }
   ];
+import React, {useState} from "react";
+import Share from "./Share"
 
   const captionStyle = {
     fontSize: '2em',

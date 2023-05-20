@@ -240,6 +240,18 @@ input {
     object-fit: cover;
     margin-right: 10px;
   }
+
+  .cmntProfileImg {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
+  .comments {
+    font-size: x-small;
+  }
   
   .shareInput {
     border: none;

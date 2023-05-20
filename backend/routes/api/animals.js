@@ -10,7 +10,7 @@ router.get("/list", (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.post("/list", (req, res) => {
+router.post("/add", (req, res) => {
 
     const newAnimal = new Animal({
         name: req.body.name,

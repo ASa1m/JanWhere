@@ -6,7 +6,8 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const animals = require("./routes/api/animals");
 const developers = require("./routes/api/about");
-const feedbacks = require("./routes/api/contact");
+const feedbacks = require("./routes/api/feedback");
+const contact = require("./routes/api/contact");
 
 const app = express();
 
@@ -42,6 +43,8 @@ app.use("/api/animals", animals);
 app.use("/api/developers", developers);
 app.use('/static', express.static('img'));
 app.use("/api/feedbacks", feedbacks);
+app.use("/api/contact", contact);
+
 
 
 const port = process.env.PORT || 5000;
