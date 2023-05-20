@@ -2,8 +2,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import ShareIcon from '@mui/icons-material/Share';
 import React from 'react'
-import Picture from '../../../src/Saim.jpg'
 import CommentCard from './CommentCard'
+import Avatar from '@mui/material/Avatar';
+
 
 
 import Caraousel from './Carousel';
@@ -14,8 +15,10 @@ export default function Share(props) {
       <div className="share col-lg-8">
         <div className="shareWrapper ">
           <div className="shareTop">
-            <img className="shareProfileImg" src={Picture} alt="/"/>
-            <span className="postText">{props.obj.description}</span>
+          <Avatar sx={{ bgcolor: 'blue' }} aria-label="recipe">
+            {props.obj.user_id?props.obj.user_id[0]:"U"}
+          </Avatar>
+            <span className="postText">{props.obj.user_id}</span>
           </div>
            <Caraousel className="postImg" images={props.obj.images}></Caraousel>
           <hr className="shareHr"/>
@@ -35,21 +38,21 @@ export default function Share(props) {
               </div>
             </div>
               <div>
-                123
+                {props.obj.likes}
               </div>
           </div>
         </div>
       </div>
       <div className="comment col-lg-4">
         <input placeholder="Write a comment" className="shareInput"/>
-        {props.comments.map((comment) => (
-          <CommentCard name={comment.name} image={comment.image} comment={comment.comment}/>
+        {props.comments && props.comments.map((comment, i) => (
+          <CommentCard key={i} name={comment.name} image={comment.image} comment={comment.comment}/>
         ))}
       </div>
       </div>
       <div className='container'>
        
-        1234
+        {props.obj.content}
       </div>
     </div>
 

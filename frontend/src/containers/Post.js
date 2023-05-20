@@ -6,68 +6,24 @@ import Share from "../components/layout/Share"
 
 function AnimalPost(props) {
 
-    const [animal, setAnimal] = useState({});
+    const [post, setPost] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
         console.log(id);
-        axios.get(`/api/Post/${id}`)
+        axios.get(`/api/posts/${id}`)
             .then(res => {
-                setAnimal(res.data);
+                setPost(res.data);
+                console.log(res);
             })
             .catch(err => {
                 console.log(err);
             })
     }, []);
-   const data= {
-        description: "Lions are Nothing",
-
-        images: [            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-            "https://cdn.britannica.com/s:800x450,c:crop/35/204435-138-2F2B745A/Time-lapse-hyper-lapse-Isle-Skye-Scotland.jpg",
-            "https://static2.tripoto.com/media/filter/tst/img/735873/TripDocument/1537686560_1537686557954.jpg",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Palace_of_Fine_Arts_%2816794p%29.jpg/1200px-Palace_of_Fine_Arts_%2816794p%29.jpg",
-            "https://www.tusktravel.com/blog/wp-content/uploads/2020/07/Best-Time-to-Visit-Darjeeling-for-Honeymoon.jpg",
-            "https://images.ctfassets.net/bth3mlrehms2/6Ypj2Qd3m3jQk6ygmpsNAM/61d2f8cb9f939beed918971b9bc59bcd/Scotland.jpg?w=750&h=422&fl=progressive&q=50&fm=jpg",
-            "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg"
-        ],
-        comments:[
-            {
-                name:"Saim",
-                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-                comment:"Hello World"
-            },
-            {
-                name:"Saim",
-                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-                comment:"Hello World"
-            },
-            {
-                name:"Saim",
-                image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-                comment:"Hello World"
-
-            }
-        ],
-        likes: 113,
-        date: "2023-05-20T14:48:00.000Z",
-        location: {
-            latitude: 24.8607,
-            longitude: 67.0011
-        },
-        region: "Asia",
-        category: "Mammal",
-        name: "Lion",
-        population: 10000,
-        _id: "60f0b0b0e6b3a1b0b4f0b0b0"
-    }
-
-
-        
-    
-
+          
 
   return (
-  <Share obj={data} ></Share>
+  <Share obj={post} comments={post.comments} ></Share>
   );
 }
 
