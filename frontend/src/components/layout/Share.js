@@ -12,6 +12,7 @@ import Caraousel from './Carousel';
 import axios from 'axios';
 import Icon from "../../../src/map-marker.png";
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import store from "../../store";
 
 
 const Share = (props ) => {
@@ -20,6 +21,7 @@ const Share = (props ) => {
   const [likeState, setLikeState] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const commentRef = React.createRef();
+  const isAuthenticated = store.getState().auth.isAuthenticated;
 
   const { id } = useParams();
   const currentUrl = window.location.href;
@@ -30,6 +32,9 @@ const Share = (props ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!isAuthenticated) return;
+
 
     const newComment = {
       user_id: props.currentUser.name,
@@ -44,6 +49,7 @@ const Share = (props ) => {
   }
 
   const handleCommentClick = () => {
+    if (!isAuthenticated) return;
     commentRef.current.focus();
   };
 
@@ -70,10 +76,13 @@ const Share = (props ) => {
   };
 
   const likeStatus = () => {
+    if (!isAuthenticated) return;
     setLikeState(!likeState);
   }
 
   const updateLikes = () => {
+    if (!isAuthenticated) return;
+
     if (!likeState) {
     axios
       .post(`/api/posts/${id}/like`, { user_id: props.currentUser.id })
@@ -146,7 +155,11 @@ const Share = (props ) => {
         </div>
         <div className="comment col-lg-4">
           <form onSubmit={handleSubmit}>
+            {isAuthenticated ? (
             <input placeholder="Write a comment" className="shareInput" name='newcomment' ref={commentRef}  />
+            ) : (
+              <input placeholder='Please Sign in' disabled />
+            )}
             <button type='submit' hidden></button>
           </form>
           <div className='p-2 comment-container'>

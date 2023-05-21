@@ -51,10 +51,7 @@ const Map = () => {
       setPostsToShow(posts);
     } else {
       // If filter is not enabled, filter posts based on animal name
-      const filtered = posts.filter(post => {
-        const animal = animalsToShow.find(animal => animal.name === animalName);
-        return post.animal_id === animal._id;
-      });
+      const filtered = posts.filter(post => { return post.animal_name === animalName });
       setPostsToShow(filtered);
     }
 
@@ -121,7 +118,7 @@ const Map = () => {
                             }
                             <div class="d-flex flex-column justify-content-between p-3">
                               <div className="p-3">
-                              <h6><b>{animals.find(x => x._id === animal.animal_id).name}</b></h6>
+                              <h6><b>{animal.animal_name}</b></h6>
                               </div>
                               <div className="p-3">
                               <p className="truncate">Posted by {animal.user_name}</p>

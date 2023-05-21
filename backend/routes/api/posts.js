@@ -7,29 +7,39 @@ const Animal = require("../../Models/Animal");
 const User = require("../../Models/User");
 
 router.get("/", async (req, res) => {
-    try {
-      const posts = await Post.find().lean().exec(); // Retrieve the posts as plain JavaScript objects
-  
-      const updatedPosts = await Promise.all(posts.map(async (post) => {
-        const { user_id, ...rest } = post; // Destructure the 'user_id' field
-  
-        if (user_id) {
-          const user = await User.findById(user_id).lean().exec(); // Await the user retrieval
-  
-          if (user) {
-            const { name } = user;
-            return { ...rest, user_name: name }; // Add 'user_name' field to the post
-          }
+  try {
+    const posts = await Post.find().lean().exec(); // Retrieve the posts as plain JavaScript objects
+
+    const updatedPosts = await Promise.all(posts.map(async (post) => {
+      const { animal_id, user_id, ...rest } = post; // Destructure the 'animal_id' and 'user_id' fields
+
+      if (animal_id) {
+        const animal = await Animal.findById(animal_id).lean().exec(); // Await the animal retrieval
+
+        if (animal) {
+          const { name: animal_name } = animal;
+          rest.animal_name = animal_name; // Add 'animal_name' field to the post
         }
-  
-        return post; // If user is not found, return the original post
-      }));
-  
-      res.json(updatedPosts);
-    } catch (err) {
-      res.status(400).json('Error: ' + err);
-    }
-  });
+      }
+
+      if (user_id) {
+        const user = await User.findById(user_id).lean().exec(); // Await the user retrieval
+
+        if (user) {
+          const { name: user_name } = user;
+          rest.user_name = user_name; // Add 'user_name' field to the post
+        }
+      }
+
+      return rest; // Return the updated post object
+    }));
+
+    res.json(updatedPosts);
+  } catch (err) {
+    res.status(400).json('Error: ' + err);
+  }
+});
+
 
   
 router.post("/addpost", (req, res) => {

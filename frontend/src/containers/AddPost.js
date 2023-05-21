@@ -41,8 +41,7 @@ const images=[]
     setTags(updatedTags);
 
     const newSelectedTag = updatedTags.find((t) => t.selected);
-    setSelectedTag(newSelectedTag ? newSelectedTag.id : null);
-    console.log(selectedTag);
+    setSelectedTag(newSelectedTag ? newSelectedTag : null);
   };
 
 
@@ -55,6 +54,7 @@ const images=[]
       alert("Please select an animal");
       return;
     }
+
 
     //upload images to cloudinary
     const formData = new FormData();
@@ -70,6 +70,7 @@ const images=[]
     newPost.cover = title;
     newPost.content = content;
     newPost.animal_id = selectedTag.id ? selectedTag.id : tags[0].id;
+
     newPost.location = {
       latitude: position ? position.lat : 0,
       longitude: position ? position.lng : 0

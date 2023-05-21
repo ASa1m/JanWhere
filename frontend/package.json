@@ -22,7 +22,6 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "styled-components": "^6.0.0-rc.1",
-    "@material-ui/icons": "^4.11.3",
     "react-dom": "^18.2.0",
     "react-image-crop": "^10.0.11"
   },
