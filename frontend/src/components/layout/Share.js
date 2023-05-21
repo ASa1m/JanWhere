@@ -53,9 +53,14 @@ const Share = (props ) => {
     commentRef.current.focus();
   };
 
-  const handleShareClick = () => {
-    navigator.clipboard.writeText(currentUrl);
-    alert("Link copied to clipboard!");
+  const handleShareClick  = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl);
+      console.log('Text copied to clipboard!');
+      alert ("Link Copied to Clipboard");
+    } catch (error) {
+      console.error('Failed to copy text to clipboard:', error);
+    }
   };
 
   const fetchComments = () => {

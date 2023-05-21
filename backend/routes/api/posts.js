@@ -6,6 +6,12 @@ const Post = require("../../Models/Post");
 const Animal = require("../../Models/Animal");
 const User = require("../../Models/User");
 
+router.get("/list/:user_id", (req, res) => {
+    Post.find({ user_id: req.params.user_id })
+        .then(posts => res.json(posts))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find().lean().exec(); // Retrieve the posts as plain JavaScript objects
@@ -185,6 +191,13 @@ router.post("/:id/unlike", (req, res) => {
 
 });
 
+router.delete("/:id/removepost", (req, res) => {
+
+    Post.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Post deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+
+});
 
 
 module.exports = router;

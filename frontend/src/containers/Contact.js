@@ -63,7 +63,18 @@ const Contact = () => {
 
     axios.post ("/api/feedbacks/add", data).then((res) => {
       console.log(res.data);
-    });
+    })
+    .then (() => {
+      alert("Thank you for your feedback!")
+      nameInput.current.value = "";
+      emailInput.current.value = "";
+      messageInput.current.value = "";
+    }
+    )
+    .catch((err) => {
+      console.log(err);
+    }
+    );
   };
 
   useEffect(() => {

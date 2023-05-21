@@ -1,15 +1,12 @@
 import React from 'react'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
 import Navbar from './components/layout/Navbar'
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
+import jwt_decode from "jwt-decode"
+import setAuthToken from "./utils/setAuthToken"
 
 import './styles/App.css'
 
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { setCurrentUser, logoutUser } from "./actions/authActions"
 
 import { Provider } from 'react-redux'
 import Map from './containers/Map'
@@ -23,7 +20,6 @@ import PrivateRoute from './components/private-route/PrivateRoute'
 import Dashboard from './components/dashboard/Dashboard'
 import Post from './containers/Post'
 import StickyButton from './components/layout/StickyButton'
-import Test from './components/layout/Test'
 import AddPost from './containers/AddPost'
 
 // Check for token to keep user logged in
@@ -81,12 +77,6 @@ function App() {
                       path="/contact"
                       element={<ContactUs />}
                     />
-          </Routes>
-          <Container>
-            <Row>
-              <Col md={12}>
-                <div className="wrapper">
-                  <Routes>
                     <Route
                       exact
                       path="/discover"
@@ -97,8 +87,14 @@ function App() {
                       path="/discover/:name"
                       element={<Discover />}
                     />
-                   
-
+                      <Route
+                        path="/dashboard"
+                        element={
+                          <PrivateRoute>
+                            <Dashboard />
+                          </PrivateRoute>
+                        }
+                      />
                     <Route
                       exact
                       path="/login"
@@ -109,27 +105,7 @@ function App() {
                       path="/signup"
                       element={<Signup />}
                     />
-                   
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <PrivateRoute>
-                          <Dashboard />
-                        </PrivateRoute>
-                      }
-                    />
-                    <Route
-                      exact
-                      path="/test"
-                      element={<Test />}
-                      />
-                   
-                  </Routes>
-                  
-                </div>
-              </Col>
-            </Row>
-          </Container>
+          </Routes>
           <StickyButton />
         </Router>
       </Provider>

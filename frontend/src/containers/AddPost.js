@@ -16,10 +16,8 @@ const AddPost = ( { currentUser } ) => {
     setPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
   };
 
-const images=[]
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [files, setFiles] = useState([]);
   const [file, setFile] = useState([]);
   const [previews, setPreviews] = useState([]);
   const [tags, setTags] = useState([]);
@@ -109,7 +107,6 @@ const images=[]
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    setFiles(images.push(selectedFiles));
     const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
     setPreviews(previewUrls);
     const files = e.target.files;
@@ -277,6 +274,7 @@ const images=[]
             Submit
           </Button>
         </form>
+      </div>
         <div className="m-13 d-flex flex-wrap lg-4">
           {previews.map((previewUrl) => (
             <img
@@ -289,7 +287,6 @@ const images=[]
           ))}
 
         </div>
-      </div>
     </Container>
   );
 };

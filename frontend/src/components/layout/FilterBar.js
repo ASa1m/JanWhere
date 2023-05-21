@@ -39,18 +39,18 @@ function FilterBar(props) {
 
   return (
     <div className="filter-bar">
-{[{name: 'Name',variant: 'primary'}].map(
+{[{name: 'Animal Name',variant: 'primary', searchKey: "animal_name"}].map(
         (name) => (
           <SplitButton
             key={name.name}
             id={`dropdown-split-variants-${name.variant}`}
             variant={name.variant.toLowerCase()}
             title={name.name}
-            toggleLabel={toggleLabel["animal_name"] === undefined ? 'All' : toggleLabel["animal_name"]}
+            toggleLabel={toggleLabel[name.searchKey] === undefined ? 'All' : toggleLabel[name.searchKey]}
           >
             <Dropdown.Item 
-            eventKey="all" onClick={(event) => handleSelect("animal_name","all", event)}>All</Dropdown.Item>
-            {dropdownCreate("animal_name")}
+            eventKey="all" onClick={(event) => handleSelect(name.searchKey,"all", event)}>All</Dropdown.Item>
+            {dropdownCreate(name.searchKey)}
           </SplitButton>
         ),
       )}

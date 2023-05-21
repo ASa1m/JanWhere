@@ -4,7 +4,6 @@ import axios from "axios";
 import Icon from "../../src/map-marker.png";
 import { useNavigate } from "react-router-dom";
 import MapCard from "../components/layout/MapCard.js";
-import Placeholder from "../placeholder-image.png";
 
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
