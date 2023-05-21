@@ -13,10 +13,10 @@ let postSchema = new Schema({
     },
     location: {
         longitude: {
-            type: Number
+            type: String
         },  
         latitude: {
-            type: Number
+            type: String
         }
     },
     date: {

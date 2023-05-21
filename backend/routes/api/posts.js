@@ -1,36 +1,45 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 
 const Post = require("../../Models/Post");
 const Animal = require("../../Models/Animal");
 const User = require("../../Models/User");
 
+router.get("/", async (req, res) => {
+    try {
+      const posts = await Post.find().lean().exec(); // Retrieve the posts as plain JavaScript objects
+  
+      const updatedPosts = await Promise.all(posts.map(async (post) => {
+        const { user_id, ...rest } = post; // Destructure the 'user_id' field
+  
+        if (user_id) {
+          const user = await User.findById(user_id).lean().exec(); // Await the user retrieval
+  
+          if (user) {
+            const { name } = user;
+            return { ...rest, user_name: name }; // Add 'user_name' field to the post
+          }
+        }
+  
+        return post; // If user is not found, return the original post
+      }));
+  
+      res.json(updatedPosts);
+    } catch (err) {
+      res.status(400).json('Error: ' + err);
+    }
+  });
 
-router.get("/", (req, res) => {
-    Post.find()
-        .then(posts => res.json(posts))
-        .catch(err => res.status(400).json('Error: ' + err));  
-});
-
+  
 router.post("/addpost", (req, res) => {
-
-    // var animalId = '';
-
-    // //Find animal ID where name = req.body.animalName and get its ID
-    // Animal.find({name: req.body.animal_id})
-    //     .then(animal => {
-    //         if (animal._id)
-    //         animalId = animal._id;
-    //         else
-    //         animalId = '';
-    //     })
 
 
     const newPost = new Post({
         animal_id: req.body.animal_id,
         user_id: req.body.user_id,
         location: {
-            latitute: req.body.location.latitute,
+            latitude: req.body.location.latitude,
             longitude: req.body.location.longitude
         },
         cover: req.body.cover,

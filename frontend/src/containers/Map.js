@@ -4,6 +4,7 @@ import axios from "axios";
 import Icon from "../../src/map-marker.png";
 import { useNavigate } from "react-router-dom";
 import MapCard from "../components/layout/MapCard.js";
+import Placeholder from "../placeholder-image.png";
 
 const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
@@ -40,6 +41,26 @@ const Map = () => {
 
 
   const [animals, setAnimals] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [postsToShow, setPostsToShow] = useState(posts);
+  const [filterEnabled, setFilterEnabled] = useState(false);
+
+  const handleFilterClick = (animalName) => {
+    if (filterEnabled) {
+      // If filter is already enabled, show all posts
+      setPostsToShow(posts);
+    } else {
+      // If filter is not enabled, filter posts based on animal name
+      const filtered = posts.filter(post => {
+        const animal = animalsToShow.find(animal => animal.name === animalName);
+        return post.animal_id === animal._id;
+      });
+      setPostsToShow(filtered);
+    }
+
+    // Toggle the filter
+    setFilterEnabled(!filterEnabled);
+  };
 
   useEffect(() => {
     axios.get('/api/animals/list')
@@ -51,6 +72,19 @@ const Map = () => {
       .catch(error => {
         console.error(error);
       });
+
+    axios.get('/api/posts/')
+      .then(response => {
+        setPosts(response.data);
+        setPostsToShow(response.data);
+        console.log(response.data);
+      }
+      )
+      .catch(error => {
+        console.error(error);
+      }
+      );
+
   }, []);
 
 
@@ -76,15 +110,22 @@ const Map = () => {
             <MarkerClusterer>
               {(clusterer) => (
                 <div>
-                  {animals.map(animal => (
-                    <Marker key={animal._id} position={{ lat: animal.location.latitude, lng: animal.location.longitude }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
+                  {postsToShow.map(animal => (
+                    animal.location &&
+                    <Marker key={animal._id} position={{ lat: parseFloat(animal.location.latitude), lng: parseFloat(animal.location.longitude )}} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
                       {activeAnimal === animal && (
-                        <InfoBox position={{ lat: animal.location.latitude, lng: animal.location.longitude }} options={{ pixelOffset: new window.google.maps.Size(-80, 0), closeBoxURL: '', enableEventPropagation: true, boxStyle: { width: "160px", height: "100px", overflow: "visible" } }}>
+                        <InfoBox position={{ lat: parseFloat(animal.location.latitude), lng: parseFloat(animal.location.longitude) }} options={{ pixelOffset: new window.google.maps.Size(-80, 0), closeBoxURL: '', enableEventPropagation: true, boxStyle: { width: "160px", height: "100px", overflow: "visible" } }}>
                           <div class="card">
-                            <img src={animal.image} alt="Avatar" style={{ width: "100%" }} />
-                            <div class="container p-3">
-                              <h6><b>{animal.name}</b></h6>
-                              <p className="truncate">{animal.description}</p>
+                            {animal.images && animal.images.length > 0 &&
+                            <img src={animal.images[0]} alt="Avatar" style={{ width: "100%" }} />
+                            }
+                            <div class="d-flex flex-column justify-content-between p-3">
+                              <div className="p-3">
+                              <h6><b>{animals.find(x => x._id === animal.animal_id).name}</b></h6>
+                              </div>
+                              <div className="p-3">
+                              <p className="truncate">Posted by {animal.user_name}</p>
+                              </div>
                             </div>
                           </div>
                         </InfoBox>
@@ -110,7 +151,7 @@ const Map = () => {
     </div>
   </nav>
         {animalsToShow.map(animal => (
-          <MapCard key={animal._id} id={animal._id} name={animal.name} image={animal.image} />
+          <MapCard key={animal._id} id={animal._id} name={animal.name} image={animal.image} clickhandle={() => handleFilterClick(animal.name)} />
         ))}
       </div>
     </div>

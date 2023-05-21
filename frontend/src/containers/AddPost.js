@@ -23,6 +23,7 @@ const images=[]
   const [file, setFile] = useState([]);
   const [previews, setPreviews] = useState([]);
   const [tags, setTags] = useState([]);
+  const [selectedTag, setSelectedTag] = useState(null);
 
   const navigate = useNavigate();
 
@@ -32,18 +33,28 @@ const images=[]
   );
 
   const handleTagClick = (tag) => {
-    const updatedTags = tags.map((t) => {
-      if (t.id === tag.id) {
-        return { ...t, selected: !t.selected };
-      }
-      return t;
-    });
+    const updatedTags = tags.map((t) => ({
+      ...t,
+      selected: t.id === tag.id,
+    }));
+
     setTags(updatedTags);
+
+    const newSelectedTag = updatedTags.find((t) => t.selected);
+    setSelectedTag(newSelectedTag ? newSelectedTag.id : null);
+    console.log(selectedTag);
   };
 
+
   const handleSubmit = (e) => {
+  
     var newPost = {images:[]};
     e.preventDefault();
+
+    if (selectedTag === null) {
+      alert("Please select an animal");
+      return;
+    }
 
     //upload images to cloudinary
     const formData = new FormData();
@@ -53,27 +64,25 @@ const images=[]
 
     axios.post('/api/upload', formData)
       .then(res => {
-        console.log(res.data.imageUrls);
-        for (const image of res.data.imageUrls) {
+          for (const image of res.data.imageUrls) {
           newPost.images.push(image);
         }
     newPost.cover = title;
     newPost.content = content;
-    newPost.animal_id = tags[0] ? tags[0].id : null;
+    newPost.animal_id = selectedTag.id ? selectedTag.id : tags[0].id;
     newPost.location = {
       latitude: position ? position.lat : 0,
       longitude: position ? position.lng : 0
     }
 
     newPost.user_id = currentUser.id;
-    console.log(newPost);
       }
       ).then(() => {
     axios.post('/api/posts/addpost', newPost)
       .then(res => 
         {
-          console.log(res.data);
-          // navigate('/post/'+res.data);
+          alert("Post added successfully!");
+          navigate('/post/'+res.data);
         }
       )
       .catch(err => console.log(err));
@@ -94,7 +103,8 @@ const images=[]
           }
           )
         )
-  }, [])
+
+  }, []);
 
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);

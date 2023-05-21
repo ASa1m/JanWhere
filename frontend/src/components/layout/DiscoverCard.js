@@ -29,6 +29,9 @@ const ExpandMore = styled((props) => {
 
 export default function DiscoverCard(props) {
   const [expanded, setExpanded] = React.useState(false);
+  // get the current domain name
+  const currentUrl = window.location.href.split('/')[0] + '//' + window.location.href.split('/')[2];
+  console.log(currentUrl);
   const navigate = useNavigate();
 
 
@@ -41,13 +44,18 @@ const handleClick = () => {
   navigate('/post/'+props.obj._id);
 }
 
+const handleShareClick = () => {
+  navigator.clipboard.writeText(currentUrl+'/post/'+props.obj._id);
+  alert("Link copied to clipboard!");
+};
+
 
   return (
     <Card className='m-2 grey' sx={{ Width: 345 }} style={{ width: '350px' }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">
-            {props.obj.username?props.obj.username[0]:"U"}
+            {props.obj.user_name?props.obj.user_name[0]:"U"}
           </Avatar>
         }
         action={
@@ -55,7 +63,7 @@ const handleClick = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.obj.name ? props.obj.name : "Unknown"}           //props.obj.Username
+        title={props.obj.user_name ? props.obj.user_name : "Unknown"}           //props.obj.Username
         subheader={props.obj.date ? props.obj.date : "1-Jan-2023"   } //props.obj.Date
       />
       <CardMedia  onClick={handleClick}
@@ -72,8 +80,9 @@ const handleClick = () => {
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
+          {props.obj.likes ? props.obj.likes.length : "0"}
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" onClick={handleShareClick}>
           <ShareIcon />
         </IconButton>
         <ExpandMore
@@ -88,7 +97,7 @@ const handleClick = () => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {props.obj.description ? props.obj.description : "No content" }
+            {props.obj.content ? props.obj.content : "No content" }
           </Typography>
         </CardContent>
       </Collapse>

@@ -10,6 +10,8 @@ import { useState, useEffect} from 'react';
 import { connect } from "react-redux";
 import Caraousel from './Carousel';
 import axios from 'axios';
+import Icon from "../../../src/map-marker.png";
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 
 
 const Share = (props ) => {
@@ -17,8 +19,14 @@ const Share = (props ) => {
   const [comments, setComments] = useState([]);
   const [likeState, setLikeState] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const commentRef = React.createRef();
 
   const { id } = useParams();
+  const currentUrl = window.location.href;
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +42,15 @@ const Share = (props ) => {
     e.target.newcomment.value = "";
 
   }
+
+  const handleCommentClick = () => {
+    commentRef.current.focus();
+  };
+
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(currentUrl);
+    alert("Link copied to clipboard!");
+  };
 
   const fetchComments = () => {
     axios
@@ -71,8 +88,7 @@ const Share = (props ) => {
       axios
         .post(`/api/posts/${id}/unlike`, { user_id: props.currentUser.id })
         .then(res => {
-          console.log(res.data);
-          setLikeCount(res.data.length);
+            setLikeCount(res.data.length);
         })
         .catch(error => {
           console.log(error);
@@ -80,12 +96,15 @@ const Share = (props ) => {
     }
   };
 
+  console.log(props.obj.location);
+
   useEffect(() => {
     // Fetch comments data here
     fetchComments();
 
   }, []);
 
+ 
 
   return (
     <div className='d-flex flex-column'>
@@ -109,11 +128,11 @@ const Share = (props ) => {
                   {likeState ? <FavoriteIcon htmlColor="#2979FF" className="shareIcon" /> : <FavoriteBorderIcon htmlColor="#2979FF" className="shareIcon" />}
                   <span className="shareOptionText">Like</span>
                 </div>
-                <div className="shareOption">
+                <div className="shareOption" onClick={handleCommentClick}>
                   <ChatBubbleOutlineIcon htmlColor="#2979FF" className="shareIcon" />
                   <span className="shareOptionText">Comment</span>
                 </div>
-                <div className="shareOption">
+                <div className="shareOption" onClick={handleShareClick}>
                   <ShareIcon htmlColor="#2979FF" className="shareIcon" />
                   <span className="shareOptionText">Share</span>
                 </div>
@@ -127,7 +146,7 @@ const Share = (props ) => {
         </div>
         <div className="comment col-lg-4">
           <form onSubmit={handleSubmit}>
-            <input placeholder="Write a comment" className="shareInput" name='newcomment' />
+            <input placeholder="Write a comment" className="shareInput" name='newcomment' ref={commentRef}  />
             <button type='submit' hidden></button>
           </form>
           <div className='p-2 comment-container'>
@@ -141,9 +160,26 @@ const Share = (props ) => {
           </div>
         </div>
       </div>
-      <div className='container'>
+      <div className='container col-lg-8'>
 
         {props.obj.content}
+      </div>
+      <div className='container col-lg-4'>
+      {!isLoaded ? (
+          <h1 className="center text-white">Loading Location</h1>
+        ) : (
+          props.obj.location &&
+      <GoogleMap
+            mapContainerClassName="location-container"
+            center={{ lng: parseFloat(props.obj.location.longitude), lat: parseFloat(props.obj.location.latitude) }}
+            zoom={10}
+            options={{ mapId: process.env.REACT_APP_GOOGLE_MAP_ID, disableDefaultUI: true, zoomControl: true, styles: [{ "featureType": "poi", "stylers": [{ "visibility": "off" }] }] }}
+          >
+            <Marker position={{ lat: parseFloat(props.obj.location.latitude), lng: parseFloat(props.obj.location.longitude) }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} >
+
+            </Marker>
+          </GoogleMap>
+        )}
       </div>
     </div>
 
