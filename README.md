@@ -1,10 +1,12 @@
 # JanWhere
 
-**Mehran Wahid**
-**Abdullah Saim**
-**Mahad Mohtashim** 
-**Haider Ali Kayani** 
-**Laiba Shafqat** 
+## Team Members
+
+- **Mehran Wahid**
+- **Abdullah Saim**
+- **Mahad Mohtashim** 
+- **Haider Ali Kayani** 
+- **Laiba Shafqat** 
 
 ## Technological Overview:
 
