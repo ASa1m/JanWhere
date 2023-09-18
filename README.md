@@ -2,7 +2,7 @@
 
 ## Team Members
 
-- **Mehran Wahid**
+- **Mehran Wahid** - [Github](https://github.com/MehranSangrasi)
 - **Abdullah Saim**
 - **Mahad Mohtashim** 
 - **Haider Ali Kayani** 
