@@ -3,10 +3,10 @@
 ## Team Members
 
 - **Mehran Wahid** - [Github](https://github.com/MehranSangrasi)
-- **Abdullah Saim**
-- **Mahad Mohtashim** 
-- **Haider Ali Kayani** 
-- **Laiba Shafqat** 
+- **Abdullah Saim** - [Github](https://github.com/ASa1m)
+- **Mahad Mohtashim** - [Github](https://github.com/chairman-lmao)
+- **Haider Ali Kayani** - [Github](https://github.com/haiderkayani)
+- **Laiba Shafqat** - [Github](https://github.com/la1baa)
 
 ## Technological Overview:
 
