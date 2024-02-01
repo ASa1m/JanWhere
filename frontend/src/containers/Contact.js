@@ -125,7 +125,7 @@ const Contact = () => {
               >
                 <div className="input-field">
                   <input id="email" type="email" ref={emailInput} />
-                  <label htmlFor="email">
+                  <label htmlFor="email" className="black text-grey">
                     {" "}
                     <MailOutlineIcon /> Email
                   </label>
@@ -133,7 +133,7 @@ const Contact = () => {
                 <div className="input-field" >
                   <input id="name" type="text" ref={nameInput} />
 
-                  <label htmlFor="name">
+                  <label htmlFor="name" className="black text-grey">
                     {" "}
                     <PersonIcon /> Name
                   </label>
@@ -149,7 +149,7 @@ const Contact = () => {
                   <label htmlFor="feedback"> <ChatBubbleOutlineIcon/>  Feedback </label>
                 </div> */}
                 <div className="input-field text-wrap border-bottom">
-                  <label htmlFor="feedback">
+                  <label htmlFor="feedback" className="black text-grey">
                     <ChatBubbleOutlineIcon maginBottom="2px" /> Feedback
                   </label>
                   <textarea
@@ -219,11 +219,13 @@ const Contact = () => {
             <h3 className="text-center">Need to talk to us?</h3>
             {/* <address> */}
             <h5 className="text-center">
-              <MailOutlineIcon /> {email ? email : "janwhere@gmail.com"}
+              <MailOutlineIcon /> 
+              <a className="text-white " href={`mailto:${email ? email:"janwhere@gamil.com"}`}>{email ? email:"janwhere@gamil.com"}</a>
             </h5>
 
             <h5 className="text-center">
-              <LocalPhoneOutlinedIcon /> {phone ? phone : "923358796261"}
+              <LocalPhoneOutlinedIcon />
+              <a className="text-white " href={`tel:${phone ? phone:"+923008438161"}`}>{phone ? phone:"+923008438161"}</a>
             </h5>
 
             {/* <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>

@@ -9,6 +9,7 @@ const Map = () => {
   const [activeAnimal, setActiveAnimal] = useState(null);
   const [animalsToShow, setAnimalsToShow] = useState([]);
   const [inputValue, setInputValue] = useState("");
+
   const navigate = useNavigate();
 
   const handleMarkerClick = (marker) => {
@@ -108,19 +109,19 @@ const Map = () => {
                 <div>
                   {postsToShow.map(animal => (
                     animal.location &&
-                    <Marker key={animal._id} position={{ lat: parseFloat(animal.location.latitude), lng: parseFloat(animal.location.longitude )}} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
+                    <Marker key={animal._id} position={{ lat: parseFloat(animal.location.latitude), lng: parseFloat(animal.location.longitude) }} icon={{ "url": Icon, "scaledSize": new window.google.maps.Size(50, 50) }} onClick={() => handleMarkerClick(animal)} onMouseOver={() => handleMarkerMouseOver(animal)} onMouseOut={handleMarkerMouseOut} clusterer={clusterer}>
                       {activeAnimal === animal && (
                         <InfoBox position={{ lat: parseFloat(animal.location.latitude), lng: parseFloat(animal.location.longitude) }} options={{ pixelOffset: new window.google.maps.Size(-80, 0), closeBoxURL: '', enableEventPropagation: true, boxStyle: { width: "160px", height: "100px", overflow: "visible" } }}>
                           <div class="card">
                             {animal.images && animal.images.length > 0 &&
-                            <img src={animal.images[0]} alt="Avatar" style={{ width: "100%" }} />
+                              <img src={animal.images[0]} alt="Avatar" style={{ width: "100%" }} />
                             }
                             <div class="d-flex flex-column justify-content-between p-3">
                               <div className="p-3">
-                              <h6><b>{animal.animal_name}</b></h6>
+                                <h6><b>{animal.animal_name}</b></h6>
                               </div>
                               <div className="p-3">
-                              <p className="truncate">Posted by {animal.user_name}</p>
+                                <p className="truncate">Posted by {animal.user_name}</p>
                               </div>
                             </div>
                           </div>
@@ -136,16 +137,18 @@ const Map = () => {
         )}
       </div>
       <div className="map-card-list overflow-auto">
-      <nav>
-    <div class="nav-wrapper">
-        <div class="input-field">
-          <input id="search" type="search" value={inputValue} onChange={handleSearch} />
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" onClick={handleClose}
-          >close</i>
-        </div>
-    </div>
-  </nav>
+        <nav>
+          <div class="nav-wrapper">
+            <div class="input-field">
+              <input id="search" type="search" value={inputValue} onChange={handleSearch} className="black text-white" placeholder="Search for an animal" />
+              <label class="label-icon" for="search">
+                <i class="material-icons black text-white">search</i>
+                </label>
+              <i class="material-icons text-white" onClick={handleClose}
+              >close</i>
+            </div>
+          </div>
+        </nav>
         {animalsToShow.map(animal => (
           <MapCard key={animal._id} id={animal._id} name={animal.name} image={animal.image} clickhandle={() => handleFilterClick(animal.name)} />
         ))}

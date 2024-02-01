@@ -45,7 +45,7 @@ const Login = ({ loginUser, auth, errors }) => {
             </p>
           </div>
           <form noValidate onSubmit={onSubmit}>
-            <div className="input-field col s12">
+            <div className="input-field col s12 text-white">
               <input
                 onChange={e => setEmail(e.target.value)}
                 value={email}
@@ -56,13 +56,13 @@ const Login = ({ loginUser, auth, errors }) => {
                   invalid: errors.email || errors.emailnotfound
                 })}
               />
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="black text-grey">Email</label>
               <span className="red-text">
                 {errors.email}
                 {errors.emailnotfound}
               </span>
             </div>
-            <div className="input-field col s12">
+            <div className="input-field col s12 text-white">
               <input
                 onChange={e => setPassword(e.target.value)}
                 value={password}
@@ -73,7 +73,7 @@ const Login = ({ loginUser, auth, errors }) => {
                   invalid: errors.password || errors.passwordincorrect
                 })}
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password"  className="black text-grey">Password</label>
               <span className="red-text">
                 {errors.password}
                 {errors.passwordincorrect}

@@ -114,6 +114,11 @@ svg:hover {
   flex-basis: 50%
 }
 
+.btn-flat:hover {
+  background-color: #2979ff;
+  color: black;
+}
+
 @media screen and (max-width: 768px) {
   .filter-bar > * {
     flex-basis: 50%; /* Set the initial width of each item to 50% */
@@ -139,11 +144,12 @@ svg:hover {
     right: 10px;
     background-color: white;
     width: 30%;
-    height: 95%;
+    height: 80%;
     opacity: 0.2;
-    transition: opacity 0.5s;
+    transition: opacity 0.2s;
     border-radius: 5px;
 }
+
 
 @media (max-width: 768px) {
   .map-card-list {
@@ -157,7 +163,7 @@ svg:hover {
 }
 
 .map-card-list:hover {
-    transition: opacity 0.5s;
+    transition: opacity 0.2s;
     opacity: 1;
 }
 
@@ -167,6 +173,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+::-webkit-scrollbar {display:none;}
+
 
 .App-logo {
   height: 5vmin;

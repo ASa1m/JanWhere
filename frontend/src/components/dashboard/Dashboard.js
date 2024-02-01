@@ -49,12 +49,13 @@ class Dashboard extends Component {
 
     return (
       <div className="d-flex center flex-lg-row flex-column">
-        <div className="col s12 center-align p-5">
+        <div className="col s12 center-align p-5 text-white">
           <h3>My Posts</h3>
-          <table className="table table-striped" style={{ marginTop: 20 }} >
+          <table className="table table-striped text-white" style={{ marginTop: 20 }} >
             <thead>
               <tr>
                 <th>Cover</th>
+                <th>Title</th>
                 <th>Date</th>
                 <th>Likes</th>
                 <th>Action</th>

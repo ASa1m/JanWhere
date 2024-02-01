@@ -51,7 +51,7 @@ const handleShareClick = () => {
 
 
   return (
-    <Card className='m-2 grey' sx={{ Width: 345 }} style={{ width: '350px' }}>
+    <Card className='m-2 white' sx={{ Width: 345 }} style={{ width: '350px' }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">

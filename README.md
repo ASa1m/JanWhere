@@ -182,5 +182,5 @@ Open React App URL on[ http://localhost:3000/ ](http://localhost:3000/)to view i
 Launch both server and client simultaneously 
 
 - First install concurrently globally in Node.js using npm install concurrently -g
-- Set node options to use openssl-legacy mode using $env:NODE\_OPTIONS="--openssl- legacy-provider
+- Set node options to use openssl-legacy mode using $env:NODE\_OPTIONS="--openssl- legacy-provider"
 - Now run the command npm run dev

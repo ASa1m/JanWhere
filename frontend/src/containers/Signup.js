@@ -43,7 +43,7 @@ const Signup = ({ auth, errors, registerUser }) => {
     <div className="container">
       <div className="row">
         <div className="col-lg-5">
-          <Link to="/" className="btn white-text">
+          <Link to="/" className="btn btn-flat white-text">
             <i className="material-icons left">keyboard_backspace</i> Back to home
           </Link>
           <div className="col s12 text-white" style={{ paddingLeft: "11.250px" }}>
@@ -55,7 +55,7 @@ const Signup = ({ auth, errors, registerUser }) => {
             </p>
           </div>
           <form noValidate onSubmit={handleSubmit}>
-            <div className="input-field col s12">
+            <div className="input-field col s12 text-white">
               <input
                 onChange={handleChange}
                 value={user.name}
@@ -66,7 +66,7 @@ const Signup = ({ auth, errors, registerUser }) => {
                   invalid: errors.name
                 })}
               />
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name"  className="black text-grey">Name</label>
               <span className="red-text">{errors.name}</span>
             </div>
             <div className="input-field col s12">
@@ -80,7 +80,7 @@ const Signup = ({ auth, errors, registerUser }) => {
                   invalid: errors.email
                 })}
               />
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email"  className="black text-grey">Email</label>
               <span className="red-text">{errors.email}</span>
             </div>
             <div className="input-field col s12">
@@ -94,7 +94,7 @@ const Signup = ({ auth, errors, registerUser }) => {
                   invalid: errors.password
                 })}
               />
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password"  className="black text-grey">Password</label>
               <span className="red-text">{errors.password}</span>
             </div>
             <div className="input-field col s12">
@@ -108,7 +108,7 @@ const Signup = ({ auth, errors, registerUser }) => {
                   invalid: errors.password2
                 })}
               />
-              <label htmlFor="password2">Confirm Password</label>
+              <label htmlFor="password2"  className="black text-grey">Confirm Password</label>
               <span className="red-text">{errors.password2}</span>
             </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
