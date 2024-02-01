@@ -61,7 +61,7 @@ const Contact = () => {
 
     console.log(data);
 
-    axios.post ("/api/feedbacks/add", data).then((res) => {
+    axios.post ( `${process.env.REACT_APP_API_URL}/api/feedback/`, data).then((res) => {
       console.log(res.data);
     })
     .then (() => {
@@ -78,7 +78,7 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    axios.get("/api/contact/").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/contact/`).then((res) => {
       setPhone(res.data[0].phone);
       setEmail(res.data[0].email);
       setAddress(res.data[0].address);

@@ -7,7 +7,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 // Register User
 export const registerUser = userData => dispatch => {
   axios
-    .post("/api/users/signup", userData)
+    .post(`${process.env.REACT_APP_API_URL}/api/users/signup`, userData)
     .then(() => {
       dispatch(loginUser(userData));
     }) // re-direct to login on successful register
@@ -22,7 +22,7 @@ export const registerUser = userData => dispatch => {
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
-    .post("/api/users/login", userData)
+    .post(`${process.env.REACT_APP_API_URL}/api/users/login`, userData)
     .then(res => {
       // Save to localStorage
 

@@ -12,7 +12,7 @@ function AnimalPost() {
 
     useEffect(() => {
         console.log(id);
-        axios.get(`/api/posts/${id}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${id}`)
             .then(res => {
                 setPost(res.data);
                 console.log(res);

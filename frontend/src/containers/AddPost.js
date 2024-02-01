@@ -60,7 +60,7 @@ const AddPost = ( { currentUser } ) => {
       formData.append('images', fil);
     }
 
-    axios.post('/api/upload', formData)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, formData)
       .then(res => {
           for (const image of res.data.imageUrls) {
           newPost.images.push(image);
@@ -77,7 +77,7 @@ const AddPost = ( { currentUser } ) => {
     newPost.user_id = currentUser.id;
       }
       ).then(() => {
-    axios.post('/api/posts/addpost', newPost)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/posts/addpost`, newPost)
       .then(res => 
         {
           alert("Post added successfully!");
@@ -92,7 +92,7 @@ const AddPost = ( { currentUser } ) => {
   };
 
   useEffect(() => {
-    axios.get('/api/animals/list')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/animals/list`)
       .then(animals =>
         animals.data.forEach(animal =>
           {

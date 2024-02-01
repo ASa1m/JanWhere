@@ -12,7 +12,7 @@ export default class Dicover extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/developers/list')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/developers/list`)
       .then(res => {
         this.setState({
           developers: res.data
@@ -25,7 +25,7 @@ export default class Dicover extends Component {
 
   fetchData() {
     return this.state.developers.map((res, i) => {
-      return <Card name={res.name} role={res.role} image={"/static/"+res.image}/>
+      return <Card name={res.name} role={res.role} image={`${process.env.REACT_APP_API_URL}/static/`+res.image}/>
     });
   }
 

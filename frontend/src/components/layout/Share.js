@@ -41,7 +41,7 @@ const Share = (props ) => {
       content: e.target.newcomment.value
     }
 
-    axios.post(`/api/posts/${props.obj._id}/addcomment`, newComment)
+    axios.post(`${process.env.REACT_APP_API_URL}/api/posts/${props.obj._id}/addcomment`, newComment)
       .then(res => setComments(res.data))
 
     e.target.newcomment.value = "";
@@ -65,7 +65,7 @@ const Share = (props ) => {
 
   const fetchComments = () => {
     axios
-      .get(`/api/posts/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/posts/${id}`)
       .then(res => {
         setComments(res.data.comments);
       
@@ -90,7 +90,7 @@ const Share = (props ) => {
 
     if (!likeState) {
     axios
-      .post(`/api/posts/${id}/like`, { user_id: props.currentUser.id })
+      .post(`${process.env.REACT_APP_API_URL}/api/posts/${id}/like`, { user_id: props.currentUser.id })
       .then(res => {
         setLikeCount(res.data.length);
       })
@@ -100,7 +100,7 @@ const Share = (props ) => {
     }
     else {
       axios
-        .post(`/api/posts/${id}/unlike`, { user_id: props.currentUser.id })
+        .post(`${process.env.REACT_APP_API_URL}/api/posts/${id}/unlike`, { user_id: props.currentUser.id })
         .then(res => {
             setLikeCount(res.data.length);
         })

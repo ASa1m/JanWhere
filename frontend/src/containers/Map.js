@@ -60,7 +60,7 @@ const Map = () => {
   };
 
   useEffect(() => {
-    axios.get('/api/animals/list')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/animals/list`)
       .then(response => {
         setAnimals(response.data);
         setAnimalsToShow(response.data);
@@ -70,7 +70,7 @@ const Map = () => {
         console.error(error);
       });
 
-    axios.get('/api/posts/')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts/`)
       .then(response => {
         setPosts(response.data);
         setPostsToShow(response.data);

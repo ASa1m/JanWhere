@@ -5,6 +5,7 @@ const passport = require("passport");
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cors = require('cors');
 
 
 const users = require("./routes/api/users");
@@ -23,6 +24,8 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+app.use(cors());
 
 // DB Config
 const db = require("./config/keys").mongoURI;

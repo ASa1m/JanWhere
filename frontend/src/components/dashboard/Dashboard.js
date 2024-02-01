@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     const userId = this.props.auth.user.id;
-    axios.get(`/api/posts/list/${userId}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/api/posts/list/${userId}`)
       .then(response => {
         this.setState({ posts: response.data });
       })
@@ -31,7 +31,7 @@ class Dashboard extends Component {
   }
 
   handlePostDelete = (postId) => {
-    axios.delete(`/api/posts/${postId}/removepost`)
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${postId}/removepost`)
       .then((res) => {
         alert(res.data);
         this.setState(prevState => ({

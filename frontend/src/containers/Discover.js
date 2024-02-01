@@ -26,7 +26,7 @@ function Discover() {
 
 
     useEffect(() => {
-        axios.get('/api/posts/')
+        axios.get(`${process.env.REACT_APP_API_URL}/api/posts/`)
             .then(response => {
                 setPosts(response.data);
                 if (name === undefined) {
